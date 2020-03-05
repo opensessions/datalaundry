@@ -1,0 +1,176 @@
+Error Logged at 10/02/2019 16:35:18
+
+
+The ConnectionString property has not been initialized.
+
+
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Utilities/DBProvider.cs:line 87
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Helpers/LogHelper.cs:line 54
+
+
+Error Logged at 10/02/2019 16:35:21
+
+
+The ConnectionString property has not been initialized.
+
+
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Utilities/DBProvider.cs:line 87
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Helpers/LogHelper.cs:line 54
+
+
+Error Logged at 10/02/2019 16:35:23
+
+
+The ConnectionString property has not been initialized.
+
+
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Utilities/DBProvider.cs:line 87
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Helpers/LogHelper.cs:line 54
+
+
+Error Logged at 10/02/2019 16:35:30
+
+
+The ConnectionString property has not been initialized.
+
+
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Utilities/DBProvider.cs:line 87
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Helpers/LogHelper.cs:line 54
+
+
+Error Logged at 10/02/2019 16:35:31
+
+
+The ConnectionString property has not been initialized.
+
+
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Utilities/DBProvider.cs:line 87
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Helpers/LogHelper.cs:line 54
+
+
+Error Logged at 10/02/2019 16:37:38
+
+
+The ConnectionString property has not been initialized.
+
+
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Utilities/DBProvider.cs:line 87
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Helpers/LogHelper.cs:line 54
+
+
+Error Logged at 10/02/2019 16:38:00
+
+
+The ConnectionString property has not been initialized.
+
+
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Utilities/DBProvider.cs:line 87
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Helpers/LogHelper.cs:line 54
+
+
+Error Logged at 10/02/2019 16:38:02
+
+
+The ConnectionString property has not been initialized.
+
+
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Utilities/DBProvider.cs:line 87
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Helpers/LogHelper.cs:line 54
+
+
+Error Logged at 10/02/2019 16:38:03
+
+
+The ConnectionString property has not been initialized.
+
+
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Utilities/DBProvider.cs:line 87
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Helpers/LogHelper.cs:line 54
+
+
+Error Logged at 10/02/2019 16:38:10
+
+
+The ConnectionString property has not been initialized.
+
+
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Utilities/DBProvider.cs:line 87
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Helpers/LogHelper.cs:line 54
+
+
+Error Logged at 10/02/2019 16:38:11
+
+
+The ConnectionString property has not been initialized.
+
+
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Utilities/DBProvider.cs:line 87
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in /Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/Helpers/LogHelper.cs:line 54
+
+

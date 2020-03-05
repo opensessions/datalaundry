@@ -1,0 +1,72 @@
+D:/#NetCore/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.deps.json
+D:/#NetCore/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/#NetCore/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.pdb
+D:/#NetCore/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csprojAssemblyReference.cache
+D:/#NetCore/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csproj.CoreCompileInputs.cache
+D:/#NetCore/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfoInputs.cache
+D:/#NetCore/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfo.cs
+D:/#NetCore/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/#NetCore/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.pdb
+D:/Jisan/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.deps.json
+D:/Jisan/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/Jisan/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.pdb
+D:/Jisan/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csprojAssemblyReference.cache
+D:/Jisan/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csproj.CoreCompileInputs.cache
+D:/Jisan/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfoInputs.cache
+D:/Jisan/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfo.cs
+D:/Jisan/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/Jisan/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.pdb
+D:/Jisan/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.deps.json
+D:/Jisan/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/Jisan/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.pdb
+D:/Jisan/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csprojAssemblyReference.cache
+D:/Jisan/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csproj.CoreCompileInputs.cache
+D:/Jisan/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfoInputs.cache
+D:/Jisan/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfo.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/Jisan/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.pdb
+D:/Asp.net Core/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.deps.json
+D:/Asp.net Core/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/Asp.net Core/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.pdb
+D:/Asp.net Core/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csprojAssemblyReference.cache
+D:/Asp.net Core/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csproj.CoreCompileInputs.cache
+D:/Asp.net Core/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfoInputs.cache
+D:/Asp.net Core/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfo.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/Asp.net Core/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.pdb
+D:/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.deps.json
+D:/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.pdb
+D:/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csprojAssemblyReference.cache
+D:/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csproj.CoreCompileInputs.cache
+D:/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfoInputs.cache
+D:/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfo.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.pdb
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.deps.json
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.dll
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.pdb
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csprojAssemblyReference.cache
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csproj.CoreCompileInputs.cache
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfoInputs.cache
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfo.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.dll
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.pdb
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.deps.json
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.pdb
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csprojAssemblyReference.cache
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csproj.CoreCompileInputs.cache
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfoInputs.cache
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfo.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.dll
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.pdb
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.deps.json
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.dll
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/bin/Debug/netstandard2.0/DataLaundryDAL.pdb
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csprojAssemblyReference.cache
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.csproj.CoreCompileInputs.cache
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfoInputs.cache
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.AssemblyInfo.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.dll
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryDAL/obj/Debug/netstandard2.0/DataLaundryDAL.pdb

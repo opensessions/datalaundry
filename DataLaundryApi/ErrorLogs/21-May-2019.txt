@@ -1,0 +1,26 @@
+Error Logged at 5/21/2019 12:32:40 PM
+
+
+Input string was not in a correct format.
+
+
+   at System.Number.StringToNumber(ReadOnlySpan`1 str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(ReadOnlySpan`1 s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryApi\Utilities\DBProvider.cs:line 82
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in D:\#NetCore\Final\DataLaundryApi\Helpers\LogHelper.cs:line 54
+
+
+Error Logged at 5/21/2019 12:33:28 PM
+
+
+Input string was not in a correct format.
+
+
+   at System.Number.StringToNumber(ReadOnlySpan`1 str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(ReadOnlySpan`1 s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at DataLaundryApi.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryApi\Utilities\DBProvider.cs:line 82
+   at DataLaundryApi.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace) in D:\#NetCore\Final\DataLaundryApi\Helpers\LogHelper.cs:line 54
+
+

@@ -1,0 +1,90 @@
+﻿@model DataLaundryApp.ViewModels.vmFeedMapping
+@{
+    ViewBag.Title = "Edit Feed Mapping";
+    Layout = null;
+
+    string jsonTree = "";
+    if (ViewBag.JsonTree != null)
+    {
+        jsonTree = ViewBag.JsonTree;
+    }
+
+}
+
+<form id="frmEditFieldMapping" >
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.FeedProviderId)
+    @Html.HiddenFor(m => m.TableName)
+    @Html.HiddenFor(m => m.ColumnName)
+    <input type="hidden" id="ActualColumnName" value="@ViewBag.ActualColumnName"/>
+    <input type="hidden" id="FeedKeyBeforeChange"/>
+    
+    <div class="row">
+        <div class="col-md-6">
+            @*@Html.LabelFor(m => m.TableName)*@
+            @Html.Label("Table Name")
+            <div class="form-group">
+                @Html.DisplayFor(m => m.TableName)
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            @*@Html.LabelFor(m => m.ColumnName)*@
+            @Html.Label("Column Name")
+            <div class="form-group">
+                @Html.DisplayFor(m => m.ColumnName)
+            </div>
+        </div>
+    </div>
+    
+    @Html.HiddenFor(m => m.FeedKeyPath)
+    @Html.HiddenFor(m => m.ColumnDataType)
+    @Html.HiddenFor(m => m.EffectToInteMapping)
+    @*@Html.LabelFor(m => m.FeedKey)*@
+    @Html.Label("Feed Key")
+
+    <div id="FeedKeyTree" class="form-group" style="max-height:200px; overflow-y:auto;"></div>
+    
+    @*<div>
+        <input id="EffectToInteMapping" name="EffectToInteMapping" type="checkbox" value="@Model.EffectToInteMapping" />
+        <label for="EffectToInteMapping">&nbsp;Effect to Intelligent mapping?</label>
+    </div>*@
+
+    <div>
+        <i>Notes:</i>
+        <ol>
+            <li>
+                You can only select key within selected feed key mapping of parent in the tree view.
+            </li>
+            <li>
+                You can select any feed key mapping if this feed mapping has no parent.
+            </li>
+        </ol>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        var jsonTree = '@Html.Raw(jsonTree)';
+
+        var jsonTreeObject = JSON.parse(jsonTree);
+        $('#FeedKeyTree').jstree({
+            'core': {
+                "check_callback": true,
+                'data': jsonTreeObject
+            }
+        });
+
+        $("#FeedKeyTree").bind("ready.jstree", function (evt, data) {
+            changeDialogPosition();
+        });
+
+        $("#FeedKeyTree").bind("select_node.jstree", function (evt, data) {
+            //selected node object: data.node;
+            $("#FeedKeyPath").val(data.node.id);
+        });
+
+    });
+</script>
+

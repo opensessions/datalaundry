@@ -1,0 +1,96 @@
+﻿.validation-summary-errors ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+.sk-spinner-center{
+    position: fixed;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 100000;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.sk-spinner-center .sk-spinner{
+    top: calc(50% - 100px);
+}
+
+.sk-spinner-center .sk-spinner-circle.sk-spinner{
+    width:100px;
+    height:100px;
+}
+
+table td.details-control {
+	background: url('../img/details_open.png') no-repeat center center;
+	cursor: pointer;
+}
+
+table tr.shown td.details-control {
+	background: url('../img/details_close.png') no-repeat center center;
+}
+
+.inline-textbox {
+    max-width: 70px;
+    display: inline-block;
+}
+
+.table-nonbordered>tbody>tr>td
+,.table-nonbordered>tbody>tr>th
+,.table-nonbordered>tfoot>tr>td
+,.table-nonbordered>tfoot>tr>th
+,.table-nonbordered>thead>tr>td
+,.table-nonbordered>thead>tr>th {
+    border:none;
+}
+
+/*.pagination>.disabled>a
+,.pagination>.disabled>a:focus
+,.pagination>.disabled>a:hover {
+    color: #777;
+    cursor: not-allowed;
+    background-color: #fff;
+    border-color: #ddd;
+    pointer-events: none;
+}*/
+
+
+/*for button blink*/
+/*@-webkit-keyframes glowing {
+  0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -webkit-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+}
+
+@-moz-keyframes glowing {
+  0% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -moz-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+}
+
+@-o-keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+
+@keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}*/
+
+
+/*for box shadow blink*/
+/*@keyframes blink {
+    0% { box-shadow: 4px 2px 30px #4a4c4c; }
+    50% { box-shadow: none; }
+    100% { box-shadow: 4px 2px 30px #060606; }
+}
+
+@-webkit-keyframes blink {
+    0% { box-shadow: 4px 2px 30px #4a4c4c; }
+    50% { box-shadow: 0 0 0; }
+    100% { box-shadow: 4px 2px 30px #060606; }
+}*/

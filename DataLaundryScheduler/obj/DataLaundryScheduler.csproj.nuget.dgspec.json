@@ -1,0 +1,78 @@
+{
+  "format": 1,
+  "restore": {
+    "/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryScheduler/DataLaundryScheduler.csproj": {}
+  },
+  "projects": {
+    "/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryScheduler/DataLaundryScheduler.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryScheduler/DataLaundryScheduler.csproj",
+        "projectName": "DataLaundryScheduler",
+        "projectPath": "/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryScheduler/DataLaundryScheduler.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryScheduler/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration.CommandLine": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,379 @@
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csprojAssemblyReference.cache
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CoreCompileInputs.cache
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cache
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.input.cache
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.output.cache
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorCoreGenerate.cache
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/Login.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/LoginPopup.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/SessionTimeout.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Create.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/CreateEditCustomFeedKeyMapping.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/EditFieldMapping.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Index.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/SchedulerSettings.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/ViewSchedulerLog.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Details.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Create.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/GetRuleDetailByID.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Index.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/_Details.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_LoginLayout.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_PrintResponse.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_SideMenu.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cache
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.dll
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.pdb
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedAnalysisResult.g.cshtml.cs
+D:/#NetCore/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedMappingResult.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csprojAssemblyReference.cache
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CoreCompileInputs.cache
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cache
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.input.cache
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.output.cache
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorCoreGenerate.cache
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.dll
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.pdb
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/Login.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/LoginPopup.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/SessionTimeout.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Create.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/CreateEditCustomFeedKeyMapping.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/EditFieldMapping.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedAnalysisResult.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedMappingResult.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Index.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/SchedulerSettings.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/ViewSchedulerLog.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Details.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Create.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/GetRuleDetailByID.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Index.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/_Details.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_LoginLayout.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_PrintResponse.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_SideMenu.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cache
+D:/Jisan/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.deps.json
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.json
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.dev.json
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.dll
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.pdb
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.dll
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.dll
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.pdb
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csprojAssemblyReference.cache
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CoreCompileInputs.cache
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cache
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.input.cache
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.output.cache
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorCoreGenerate.cache
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/Login.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/LoginPopup.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/SessionTimeout.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Create.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/CreateEditCustomFeedKeyMapping.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/EditFieldMapping.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedAnalysisResult.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedMappingResult.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Index.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/SchedulerSettings.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/ViewSchedulerLog.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Details.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Helper.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_HelperFeedAnalysisResult.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Create.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/GetRuleDetailByID.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Index.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/_Details.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_LoginLayout.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_PrintResponse.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_SideMenu.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cache
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cs
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CopyComplete
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.dll
+D:/Jisan/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.pdb
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.deps.json
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.json
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.dev.json
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.dll
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.pdb
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.dll
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.dll
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.pdb
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csprojAssemblyReference.cache
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CoreCompileInputs.cache
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cache
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.input.cache
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.output.cache
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorCoreGenerate.cache
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/Login.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/LoginPopup.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/SessionTimeout.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Create.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/CreateEditCustomFeedKeyMapping.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/EditFieldMapping.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedAnalysisResult.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedMappingResult.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Index.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/SchedulerSettings.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/ViewSchedulerLog.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Details.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Helper.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_HelperFeedAnalysisResult.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Create.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/GetRuleDetailByID.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Index.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/_Details.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_LoginLayout.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_PrintResponse.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_SideMenu.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cache
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cs
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CopyComplete
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.dll
+D:/Asp.net Core/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.pdb
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.deps.json
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.json
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.dev.json
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.dll
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.pdb
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.dll
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.dll
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.pdb
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csprojAssemblyReference.cache
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CoreCompileInputs.cache
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cache
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.input.cache
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.output.cache
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorCoreGenerate.cache
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/Login.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/LoginPopup.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/SessionTimeout.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Create.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/CreateEditCustomFeedKeyMapping.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/EditFieldMapping.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedAnalysisResult.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedMappingResult.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Index.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/SchedulerSettings.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/ViewSchedulerLog.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Details.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Helper.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_HelperFeedAnalysisResult.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Create.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/GetRuleDetailByID.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Index.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/_Details.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_LoginLayout.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_PrintResponse.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_SideMenu.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cache
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cs
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CopyComplete
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.dll
+D:/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.pdb
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.deps.json
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.json
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.dev.json
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.dll
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.pdb
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.dll
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.dll
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.pdb
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csprojAssemblyReference.cache
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CoreCompileInputs.cache
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cache
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.input.cache
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.output.cache
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorCoreGenerate.cache
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/Login.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/LoginPopup.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/SessionTimeout.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Create.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/CreateEditCustomFeedKeyMapping.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/EditFieldMapping.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedAnalysisResult.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedMappingResult.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Index.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/SchedulerSettings.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/ViewSchedulerLog.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Details.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Helper.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_HelperFeedAnalysisResult.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Create.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/GetRuleDetailByID.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Index.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/_Details.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_LoginLayout.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_PrintResponse.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_SideMenu.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cache
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cs
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CopyComplete
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.dll
+e:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.pdb
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.deps.json
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.json
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.dev.json
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.dll
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.pdb
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.dll
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.dll
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.pdb
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csprojAssemblyReference.cache
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CoreCompileInputs.cache
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cache
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.input.cache
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.output.cache
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorCoreGenerate.cache
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/Login.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/LoginPopup.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/SessionTimeout.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Create.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/CreateEditCustomFeedKeyMapping.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/EditFieldMapping.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedAnalysisResult.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedMappingResult.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Index.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/SchedulerSettings.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/ViewSchedulerLog.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Details.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Helper.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_HelperFeedAnalysisResult.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Create.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/GetRuleDetailByID.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Index.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/_Details.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_LoginLayout.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_PrintResponse.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_SideMenu.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cache
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cs
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CopyComplete
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.dll
+D:/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.pdb
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.deps.json
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.json
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.runtimeconfig.dev.json
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.dll
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.pdb
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.dll
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.dll
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/bin/Debug/netcoreapp2.2/DataLaundryDAL.pdb
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csprojAssemblyReference.cache
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CoreCompileInputs.cache
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cache
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorAssemblyInfo.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.input.cache
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.TagHelpers.output.cache
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorCoreGenerate.cache
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/Login.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/LoginPopup.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Account/SessionTimeout.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Create.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/CreateEditCustomFeedKeyMapping.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/EditFieldMapping.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedAnalysisResult.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/FeedMappingResult.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/Index.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/SchedulerSettings.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/ViewSchedulerLog.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Details.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_Helper.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FeedProvider/_HelperFeedAnalysisResult.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Create.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/GetRuleDetailByID.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/Index.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/FilterRules/_Details.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_LoginLayout.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_PrintResponse.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_SideMenu.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cache
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.RazorTargetAssemblyInfo.cs
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.Views.pdb
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.csproj.CopyComplete
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.dll
+/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApp/DataLaundryApp/obj/Debug/netcoreapp2.2/DataLaundryApp.pdb

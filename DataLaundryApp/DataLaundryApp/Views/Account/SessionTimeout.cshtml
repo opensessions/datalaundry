@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Extensions
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";    
+}
+   <div class="ibox-content gray-bg">    
+    <h2>Session Expired</h2>
+    <div>Your session is timed out after a long time of inactivity. Please click OK and sign in again.</div>
+    <br />
+    <a id="HitMe" href="" class="btn-success" style="padding: 5px 40px !important;border-radius:15px;">OK</a>
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function()
+        {          
+            var oUrl='@ViewBag.loadUrl';  
+            if(oUrl!='')
+            $("#HitMe").attr("href","/"+oUrl+"/Account/Login?returnUrl="+decodeURI(GetParameterValues('returnUrl')));
+            else
+            $("#HitMe").attr("href","/Account/Login?returnUrl="+decodeURI(GetParameterValues('returnUrl')));
+        })
+
+        function GetParameterValues(param)
+        {
+            try
+            {
+                var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for (var i = 0; i < url.length; i++) 
+                {  
+                    var urlparam = url[i].split('=');  
+                    if (urlparam[0] == param) 
+                    {  
+                        return urlparam[1];  
+                     }  
+                }
+            }            
+            catch(e)
+            {
+
+            }
+        }
+    </script>
+}

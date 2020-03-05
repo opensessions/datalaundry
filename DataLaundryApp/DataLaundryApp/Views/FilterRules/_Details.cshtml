@@ -1,0 +1,44 @@
+﻿@model DataLaundryDAL.DTO.FeedProvider
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Feed Provider Details
+    </div>
+    <div class="panel-body">
+        @if (Model != null)
+        {
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.JSONTreeFileName)
+            @Html.HiddenFor(m => m.SampleJSONFIleName)
+            @Html.HiddenFor(m => m.JsonTreeWithDisabledKeysFileName)
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            @Model.Name
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>URL</label>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="@Model.Source"  target="_blank">@Model.Source</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger">
+                Feed provider not found
+            </div>
+        }
+    </div>
+</div>

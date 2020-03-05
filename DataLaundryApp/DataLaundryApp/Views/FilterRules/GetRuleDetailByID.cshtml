@@ -1,0 +1,477 @@
+﻿@model DataLaundryDAL.DTO.FilterRule
+@{
+    ViewBag.Title = "Rule Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var oQuery = new System.Text.StringBuilder();
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@ViewBag.Title</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Page","FilterRules",new { id=Model.Id})">Rule</a>
+            </li>
+            <li class="active">
+                <strong>@ViewBag.Title</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    @if(Model !=null && Model?.Id > 0)
+    {
+        <div class="row">
+        <div class="col-md-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Rule</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label>Rule Name</label>
+                                    @Html.TextBox("RuleName", Model.RuleName, new { @class = "form-control", @readonly = true })
+                                </div>
+                                <div class="form-group">
+                                    <label>Enable</label>
+                                    @Html.CheckBox("Enable", Model.IsEnable, new { @disabled = "disabled" })
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Filter Criteria</h5>
+                </div>
+                <div class="ibox-content">
+                    <form role="form">
+                        @{
+                            var lstFilterCriteria = Model.FilterCriteria ?? new List<DataLaundryDAL.DTO.FilterCriteria>();
+                            for (int i = 0; i < lstFilterCriteria.Count; i++)
+                            {
+                                var oRuleOperator = Model.RuleOperator.Where(x => x.Id == lstFilterCriteria[i].OperationId).FirstOrDefault();
+                                var oOperator = Model.Operator.Where(x => x.Id == lstFilterCriteria[i].OperatorId).FirstOrDefault();
+                                <div class="row padding-10px-bottom">
+                                    <div class="col-md-2">
+                                        @if (lstFilterCriteria[i].IsMatch)
+                                        {
+                                            <select class="form-control" disabled="">
+                                                <option selected="selected">
+                                                    @lstFilterCriteria[i].FeedKey
+                                                </option>
+                                            </select>
+                                        }
+                                        else
+                                        {
+                                            <select class="form-control" disabled="" style="background-color:#e0c6c6;" title="@lstFilterCriteria[i].FeedKey">
+                                                <option selected="selected">
+                                                    @lstFilterCriteria[i].FeedKey
+                                                </option>
+                                            </select>
+                                        }
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-control" disabled="">
+                                            <option selected="">@oOperator.Name</option>
+                                        </select>
+                                    </div>
+                                    @if (oOperator.Id != 8 && oOperator.Id != 9)
+                                    {
+                                        <div class="col-md-8">
+                                            @Html.TextBox("Value", lstFilterCriteria[i].Value, new { @class = "form-control", @readonly = "" })
+                                        </div>
+                                    }
+                                </div>
+                                if (oRuleOperator != null)
+                                {
+                                    <div class="row padding-10px-bottom">
+                                        <div class="col-md-12 text-center" style="padding-left: 30%;width:auto;">
+                                            @if (lstFilterCriteria.Count > 0)
+                                            {
+                                                <select class="form-control" disabled="">
+                                                    <option selected="">@oRuleOperator.Name</option>
+                                                </select>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Operation</h5>
+                </div>
+                <div class="ibox-content">
+                    @{
+                        var OperationTypeMaster = Model.OperationTypeMaster;
+                        var lstOperation = Model.OperationData;
+                        var OpenPanel = lstOperation.Where(x => OperationTypeMaster.Any(z => z.OperationTypeId == x.OperationTypeId))?.FirstOrDefault()?.OperationTypeId;
+
+                        <ul class="nav nav-tabs">
+                            @for (int i = 0; i < OperationTypeMaster.Count; i++)
+                            {
+                                <li class="@(OperationTypeMaster[i].OperationTypeId==OpenPanel ? "active" : "disabled")"><a @(OperationTypeMaster[i].OperationTypeId == OpenPanel ? "data-toggle='tab'" : "") href="#@OperationTypeMaster[i].OperationTypeId">@OperationTypeMaster[i].Name</a></li>
+                            }
+                        </ul>
+                        <div class="tab-content">
+                            @for (int i = 0; i < OperationTypeMaster.Count; i++)
+                            {
+                                <div id="@OperationTypeMaster[i].OperationTypeId" class="tab-pane fade @(OperationTypeMaster[i].OperationTypeId == OpenPanel ? "in active" : "")">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel-body">
+                                                @{
+                                                    switch (OperationTypeMaster[i].OperationTypeId)
+                                                    {
+                                                        case 1://Value Assignment
+                                                            <div class="row">
+                                                                @if (lstOperation.Where(x => x.OperationTypeId == OperationTypeMaster[i].OperationTypeId).ToList().Count > 0)
+                                                                {
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered table-striped">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th> Field Name (Path)</th>
+                                                                                    <th> Value </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @for (int j = 0; j < lstOperation.Count; j++)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            @if (!string.IsNullOrEmpty(lstOperation[j].FeedKey))
+                                                                                            {
+                                                                                                <b>@lstOperation[j].FeedKey</b>
+                                                                                                <span>(@lstOperation[j].FeedKeyPath)</span>
+                                                                                            }
+                                                                                            else
+                                                                                            {<span style="background-color: #e0c6c6;">
+                                                                                                @lstOperation[j].ColumnName
+
+                                                                                            </span>
+                                                                                            }
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @lstOperation[j].Value
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="col-md-12">
+                                                                        No data available.
+                                                                    </div>
+                                                                }
+                                                            </div>
+
+                                                            break;
+                                                        case 2://Field Assignment
+                                                            <div class="row">
+                                                                @if (lstOperation.Where(x => x.OperationTypeId == OperationTypeMaster[i].OperationTypeId).ToList().Count > 0)
+                                                                {
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered table-striped">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>
+                                                                                        To Be Assigned Field
+                                                                                    </th>
+                                                                                    <th>
+                                                                                        From Assigned Field
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @for (int j = 0; j < lstOperation.Count; j++)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            @if (!string.IsNullOrEmpty(lstOperation[j].FeedKey))
+                                                                                            {
+                                                                                                <b>@lstOperation[j].FeedKey</b>
+                                                                                                <span>(@lstOperation[j].FeedKeyPath)</span>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <span style="background-color: #e0c6c6;">
+                                                                                                    @lstOperation[j].ColumnName
+                                                                                                </span>
+                                                                                            }
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @if (!string.IsNullOrEmpty(lstOperation[j].TempFeedKey))
+                                                                                            {
+                                                                                                <b>@lstOperation[j].TempFeedKey</b>
+                                                                                                <span>(@lstOperation[j].TempFeedKeyPath)</span>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <span style="background-color: #e0c6c6;">
+                                                                                                    @lstOperation[j].TempColumnName
+                                                                                                </span>
+                                                                                            }
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="col-md-12">
+                                                                        No data available.
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                            break;
+                                                        case 3://Keyword/Sentence Replacement
+                                                            <div class="row">
+                                                                @if (lstOperation.Where(x => x.OperationTypeId == OperationTypeMaster[i].OperationTypeId).ToList().Count > 0)
+                                                                {
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered table-striped">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Field Name (Path)</th>
+                                                                                    <th>Current Word/Sentence</th>
+                                                                                    <th>New Word/Sentence</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @for (int j = 0; j < lstOperation.Count; j++)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            @if (!string.IsNullOrEmpty(lstOperation[j].FeedKey))
+                                                                                            {
+                                                                                                <b>@lstOperation[j].FeedKey</b>
+                                                                                                <span>(@lstOperation[j].FeedKeyPath)</span>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <span style="background-color: #e0c6c6;">
+                                                                                                    @lstOperation[j].ColumnName
+                                                                                                </span>
+                                                                                            }
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @lstOperation[j].CurrentWord
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @lstOperation[j].NewWord
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="col-md-12">
+                                                                        No data available.
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                            break;
+                                                        case 4://Remove Sentence
+                                                            <div class="row">
+                                                                @if (lstOperation.Where(x => x.OperationTypeId == OperationTypeMaster[i].OperationTypeId).ToList().Count > 0)
+                                                                {
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered table-striped">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Field Name (Path)</th>
+                                                                                    <th>Sentance</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @for (int j = 0; j < lstOperation.Count; j++)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            @if (!string.IsNullOrEmpty(lstOperation[j].FeedKey))
+                                                                                            {
+                                                                                                <b>@lstOperation[j].FeedKey</b>
+                                                                                                <span>(@lstOperation[j].FeedKeyPath)</span>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <span style="background-color: #e0c6c6;">
+                                                                                                    @lstOperation[j].ColumnName
+                                                                                                </span>
+                                                                                            }
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @lstOperation[j].Sentance
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="col-md-12">
+                                                                        No data available.
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                            break;
+                                                        case 5://Calculation
+                                                            <div class="row">
+                                                                @if (lstOperation.Where(x => x.OperationTypeId == OperationTypeMaster[i].OperationTypeId).ToList().Count > 0)
+                                                                {
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered table-striped">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Field Name (Path)</th>
+                                                                                    <th>Selected First Field</th>
+                                                                                    <th>Operand</th>
+                                                                                    <th>Selected Second Field</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @for (int j = 0; j < lstOperation.Count; j++)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            @if (!string.IsNullOrEmpty(lstOperation[j].FeedKey))
+                                                                                            {
+                                                                                                <b>@lstOperation[j].FeedKey</b>
+                                                                                                <span>(@lstOperation[j].FeedKeyPath)</span>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <span style="background-color: #e0c6c6;">
+                                                                                                    @lstOperation[j].ColumnName
+                                                                                                </span>
+                                                                                            }
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @if (!string.IsNullOrEmpty(lstOperation[j].TempFRFeedKey))
+                                                                                            {
+                                                                                                <b>@lstOperation[j].TempFRFeedKey</b>
+                                                                                                <span>(@lstOperation[j].TempFRFeedKeyPath)</span>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <span style="background-color: #e0c6c6;">
+                                                                                                    @lstOperation[j].TempFRColumnName
+                                                                                                </span>
+                                                                                            }
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @if (lstOperation[j].Value == "0")
+                                                                                            {
+                                                                                                <span>Add</span>
+                                                                                            }
+                                                                                            else if (lstOperation[j].Value == "1")
+                                                                                            {
+                                                                                                <span>Sub</span>
+                                                                                            }
+                                                                                            else if (lstOperation[j].Value == "2")
+                                                                                            {
+                                                                                                <span>Mul</span>
+                                                                                            }
+                                                                                            else if (lstOperation[j].Value == "3")
+                                                                                            {
+                                                                                                <span>Div</span>
+                                                                                            }
+                                                                                            else if (lstOperation[j].Value == "4")
+                                                                                            {
+                                                                                                <span>Concat</span>
+                                                                                            }
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @if (!string.IsNullOrEmpty(lstOperation[j].TempSCFeedKey))
+                                                                                            {
+                                                                                                <b>@lstOperation[j].TempSCFeedKey</b>
+                                                                                                <span> (@lstOperation[j].TempSCFeedKeyPath)</span>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <span style="background-color: #e0c6c6;">
+                                                                                                    @lstOperation[j].TempSCColumnName
+                                                                                                </span>
+                                                                                            }
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="col-md-12">
+                                                                        No data available.
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                            break;
+                                                        case 6:// Remove Session
+                                                            <div class="row">
+                                                                @if (lstOperation.Where(x => x.OperationTypeId == OperationTypeMaster[i].OperationTypeId).ToList().Count > 0)
+                                                                {
+                                                                    <div class="col-md-12">
+                                                                        Remove Session.
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="col-md-12">
+                                                                        No data available.
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                            break;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>    
+    }
+    else
+    {
+<div class="alert alert-danger">
+                Rule detail's not found
+            </div>
+    }
+</div>

@@ -1,0 +1,14 @@
+D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\hostpolicy.dll
+D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\hostfxr.dll
+D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.exe
+D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.deps.json
+D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.runtimeconfig.json
+D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.runtimeconfig.dev.json
+D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.dll
+D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.pdb
+D:\#NetCore\Final\DataLaundryScheduler\obj\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.csprojAssemblyReference.cache
+D:\#NetCore\Final\DataLaundryScheduler\obj\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.csproj.CoreCompileInputs.cache
+D:\#NetCore\Final\DataLaundryScheduler\obj\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.AssemblyInfoInputs.cache
+D:\#NetCore\Final\DataLaundryScheduler\obj\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.AssemblyInfo.cs
+D:\#NetCore\Final\DataLaundryScheduler\obj\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.dll
+D:\#NetCore\Final\DataLaundryScheduler\obj\Debug\netcoreapp2.2\win10-x64\DataLaundryScheduler.pdb

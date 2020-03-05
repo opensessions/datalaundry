@@ -1,0 +1,11 @@
+D:\#NetCore\Final\DataLaundryScheduler\bin\release\netcoreapp2.2\DataLaundryScheduler.deps.json
+D:\#NetCore\Final\DataLaundryScheduler\bin\release\netcoreapp2.2\DataLaundryScheduler.runtimeconfig.json
+D:\#NetCore\Final\DataLaundryScheduler\bin\release\netcoreapp2.2\DataLaundryScheduler.runtimeconfig.dev.json
+D:\#NetCore\Final\DataLaundryScheduler\bin\release\netcoreapp2.2\DataLaundryScheduler.dll
+D:\#NetCore\Final\DataLaundryScheduler\bin\release\netcoreapp2.2\DataLaundryScheduler.pdb
+D:\#NetCore\Final\DataLaundryScheduler\obj\release\netcoreapp2.2\DataLaundryScheduler.csprojAssemblyReference.cache
+D:\#NetCore\Final\DataLaundryScheduler\obj\release\netcoreapp2.2\DataLaundryScheduler.csproj.CoreCompileInputs.cache
+D:\#NetCore\Final\DataLaundryScheduler\obj\release\netcoreapp2.2\DataLaundryScheduler.AssemblyInfoInputs.cache
+D:\#NetCore\Final\DataLaundryScheduler\obj\release\netcoreapp2.2\DataLaundryScheduler.AssemblyInfo.cs
+D:\#NetCore\Final\DataLaundryScheduler\obj\release\netcoreapp2.2\DataLaundryScheduler.dll
+D:\#NetCore\Final\DataLaundryScheduler\obj\release\netcoreapp2.2\DataLaundryScheduler.pdb

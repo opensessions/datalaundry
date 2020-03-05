@@ -1,0 +1,171 @@
+﻿@model DataLaundryApp.ViewModels.vmFeedProvider
+@{
+    ViewBag.Title = "Add Feed Provider";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    @*@Html.Partial("_PrintResponse")*@
+
+    <div class="ibox">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Create", "FeedProvider", FormMethod.Post, new { @id = "FeedProvider_Create", @autocomplete = "on" }))
+            {
+                @Html.AntiForgeryToken()                
+                @*@Html.LabelFor(m => m.Name)*@
+                <label for="Name">Name</label>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control m-d-xs", @maxlength = "100", @oninput = "" })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+
+                @*@Html.LabelFor(m => m.Source)*@
+                <label for="Source">URL</label>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Source, new { @class = "form-control m-d-xs", @maxlength = "500" })
+                    @Html.ValidationMessageFor(m => m.Source, "", new { @class = "text-danger" })
+                </div>
+
+                @*@Html.LabelFor(m => m.FeedDataTypeId)*@
+                <label for="FeedDataTypeId">Data Type</label>
+
+                <div class="form-group">
+                    @Html.DropDownListFor(m => m.FeedDataTypeId, new SelectList(ViewBag.FeedDataTypeList, "Id", "Name"), "-- Select --", new { @class = "form-control m-d-xs" })
+                    @Html.ValidationMessageFor(m => m.FeedDataTypeId, "", new { @class = "text-danger" })
+                </div>
+
+                @*<div class="form-group">
+                        <div class="checkbox i-checks">
+                            <label>
+                                @Html.CheckBoxFor(model => model.IsIminConnector)<span>&nbsp;&nbsp;Imin Connector</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox i-checks">
+                            <label>
+                                @Html.CheckBoxFor(model => model.EndpointUp)<span>&nbsp;&nbsp;Endpoint Up</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox i-checks">
+                            <label>
+                                @Html.CheckBoxFor(model => model.UsesPagingSpec)<span>&nbsp;&nbsp;Uses Paging Spec</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox i-checks">
+                            <label>
+                                @Html.CheckBoxFor(model => model.IsOpenActiveCompatible)<span>&nbsp;&nbsp;Uses Oportunity Model</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox i-checks">
+                            <label>
+                                @Html.CheckBoxFor(model => model.IncludesCoordinates)<span>&nbsp;&nbsp;Includes Coordinates</span>
+                            </label>
+                        </div>
+                    </div>*@
+
+                <div class="form-group clearfix">
+                    <button type="button" id="btnSave" class="btn btn-lg btn-primary pull-right">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="jsChanges">
+
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+
+
+            //$("#FeedProvider_Create").submit(function () {
+            //    console.log(" oResult " + oResult);
+
+            //});
+            //$('#FeedProvider_Create #Name').keypress(function (e) {
+            //    var regex = new RegExp("^[a-zA-Z0-9]+$");
+            //    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+            //    console.log("charCode -> " + e.charCode + " which -> " + e.which);
+            //    if (regex.test(str)) {
+            //        return true;
+            //    }
+            //    else {
+            //        e.preventDefault();
+            //        return false;
+            //    }
+            //});
+
+        });
+        $(document).ready(function () {
+            var oResult = true;
+            $("#FeedDataTypeId").val('1');
+
+            $("#btnSave").click(function ()
+            {
+                if (oResult)
+                {
+                    if ($("#FeedProvider_Create").valid())
+                    {
+                        $(".btn").attr("disabled", true);
+                        $("#FeedProvider_Create").submit();
+                        return true;
+                    }
+                }
+                else
+                {
+                    $("#FeedProvider_Create").valid();
+                    IsName($("#Name"));
+                }
+            });
+
+            $("#Name").change(function () {
+                var oName = $.trim($(this).val());
+                if (oName != "" && oName.length > 0) {
+                    $.getJSON('@Url.Action("IsNameAvailable", "FeedProvider")',
+                       { Name: oName },
+                       function (data) {
+                           if (data)//already name exists
+                           {
+                               oResult = false;
+                               IsName($("#Name"));
+                               return;
+                           } else {
+                               oResult = true;
+                               return;
+                           }
+                       }
+                       );
+                }
+            });
+        });
+
+        function IsName(elem) {
+            if ($(elem).val().length > 0) {
+                $("#Name").addClass("input-validation-error");
+                $("#Name").removeClass("valid");
+                $('span[data-valmsg-for="Name"]').html('<span for="Name">The name already exists, please try another name.</span>');
+            }
+        }
+    </script>
+}

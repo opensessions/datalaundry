@@ -1,0 +1,937 @@
+﻿
+@using DataLaundryDAL.DTO
+@using DataLaundryApp.ViewModels;
+
+@model Tuple<FeedProvider, List<IntelligentFeedMapping>>
+@{
+    ViewBag.Title = "Feed Analysis Result";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .ui-dialog{
+        position: fixed;
+    }
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@ViewBag.Title</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","FeedProvider")">Feed Providers</a>
+            </li>
+            <li class="active">
+                <strong>@ViewBag.Title</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    else
+    {
+        if (Model != null && Model.Item2 != null && Model.Item2.Count > 0)
+        {
+            @*if (Model.Item2?.Count > 0 && Model.Item3.Count == 0)
+                {
+                    <div class="alert alert-success">
+                        Feeds anyalzed successfully and found all matches
+                    </div>
+                }
+                else if (Model.Item2?.Count == 0 && Model.Item3.Count > 0)
+                {
+                    <div class="alert alert-danger">
+                        Feeds anyalzed successfully and found no matches
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        Feeds anyalzed successfully and only found some matches
+                    </div>
+                }*@
+
+            <div class="alert alert-success">
+                Feed analyzed successfully, please review below:
+            </div>
+
+            @Html.Partial("_Details", Model.Item1)
+
+            <div class="ibox">
+                <div class="ibox-content">
+
+                    <div class="clearfix">
+                        <a href='javascript:void(0);' class="btn btn-primary pull-right" onclick="openViewSampleJson();" style="margin-left:10px;">View Json Data</a>
+                        <a href='javascript:void(0);' class="btn btn-primary pull-right" onclick="openAddCustomFeedKey()" style="margin-left:10px;">Add Custom Feed Key</a>
+
+                        <a href='javascript:void(0);' class="btn btn-primary pull-right collapseAll" style="margin-left:10px;">
+                            <i class="fa fa-minus-circle"></i>&nbsp;Collapse All
+                        </a>
+                        <a href='javascript:void(0);' class="btn btn-primary pull-right expandAll">
+                            <i class="fa fa-plus-circle"></i>&nbsp;Expand All
+                        </a>
+                    </div>
+
+                    @if (Model.Item2.Count > 0)
+                    {
+                        var lstChildrenFound = Model.Item2.Where(x => !string.IsNullOrEmpty(x.FeedMapping.FeedKey) && x.ParentId == null && x.FeedMapping.IsDeleted != true).OrderBy(x => x.FeedMapping.Position).ToList();
+                        var lstChildrenNotFound = Model.Item2.Where(x => string.IsNullOrEmpty(x.FeedMapping.FeedKey) && x.ParentId == null && x.FeedMapping.IsDeleted != true).ToList();
+                        var lstDeletedChildren = Model.Item2.Where(x => x.ParentId == null && x.FeedMapping.IsDeleted == true).ToList();
+                        
+                        <div class="matchedFields">
+                            <h2>Matched Fields</h2>
+
+                            <div class="table-responsive">
+                                @Html.Partial("_HelperFeedAnalysisResult.cshtml",new vmHelperModel(){hasMatchesFound=true,lstIntelligentFeedMappingAll=Model.Item2,lstIntelligentFeedMapping=lstChildrenFound})
+                            </div>
+                        </div>
+
+                        <div class="nonMatchedFields">
+                            <h2>Non-Matched Fields</h2>
+
+                            <div class="table-responsive">
+                                @Html.Partial("_HelperFeedAnalysisResult.cshtml",new vmHelperModel(){hasMatchesFound=false,lstIntelligentFeedMappingAll=Model.Item2,lstIntelligentFeedMapping=lstChildrenNotFound})
+                            </div>
+                        </div>
+
+                        <div class="deletedMatchedFields">
+                            <h2>Deleted Fields</h2>
+
+                            <div class="table-responsive">
+                                @Html.Partial("_HelperFeedAnalysisResult.cshtml",new vmHelperModel(){hasMatchesFound=false,lstIntelligentFeedMappingAll=Model.Item2,lstIntelligentFeedMapping=lstDeletedChildren})
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="form-group clearfix">
+                <button id="btnConfirm" class="btn btn-lg btn-primary pull-right">Confirm</button>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger">
+                No Feed Key Mapping found
+            </div>
+        }
+    }
+
+    <div id="EditFieldMappingDialog" class="modal" style="overflow: hidden;">
+        No data found
+    </div>
+
+    <div id="ViewSampleJsonDialog" class="modal">
+        <pre style="white-space: pre-wrap;max-height: 400px;">No data found</pre>
+    </div>
+
+    <div id="ViewSampleFeedKeyValueDialog" class="modal">
+        <div></div>
+        <b>Feed Data</b>
+        <pre style="white-space: pre-wrap;max-height: 400px;">No data found</pre>
+    </div>
+
+    <div id="AddCustomFeedKeyMappingDialog" class="modal" style="overflow: hidden;">
+        No data found
+    </div>
+
+    <div id="EditCustomFeedKeyMappingDialog" class="modal" style="overflow: hidden;">
+        No data found
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var arrFeedMapping = [], arrFeedMappingFinal = [];
+
+        $(function () {
+            $(".feedKeyMapping td.details-control").click(function () {
+                $(this).parent().toggleClass("shown");
+
+                if ($(this).parent().hasClass("shown")) {
+                    $(this).parent().next(".childrow").show();
+                }
+                else {
+                    $(this).parent().next(".childrow").hide();
+                }
+            });
+
+            $(".expandAll").click(function () {
+                $('.childrow').prev('tr').addClass('shown');
+                $('.childrow').slideDown();
+
+            });
+
+            $(".collapseAll").click(function () {
+                $('.childrow').prev('tr').removeClass('shown');
+                $('.childrow').slideUp();
+            });
+
+            $(".up,.down").click(function () {                
+                var row = $(this).parents("tr:first");
+                if ($(this).is(".up")) {
+                    var prevRowVal = row.prev().find("#new_Position").val();
+                    var nextRowVal = row.find("#new_Position").val();
+
+                    if (prevRowVal && nextRowVal)
+                    {
+                        row.find("#new_Position").val(prevRowVal);
+                        row.prev().find("#new_Position").val(nextRowVal);
+                    }
+                    row.insertBefore(row.prev());
+                }
+                else if ($(this).is(".down")) {
+                    var prevRowVal = row.next().find("#new_Position").val();
+                    var nextRowVal = row.find("#new_Position").val();
+
+                    if (prevRowVal && nextRowVal)
+                    {
+                        row.find("#new_Position").val(prevRowVal);
+                        row.next().find("#new_Position").val(nextRowVal);
+                    }
+                    row.insertAfter(row.next());
+                }                
+            });
+
+            $('#ViewSampleJsonDialog').dialog({
+                autoOpen: false,
+                width: 800,
+                //height: 500,
+                resizable: false,
+                title: 'View Sample Json',
+                modal: true,
+                buttons: {
+                    "Close": function () {
+                        $(this).dialog("close");
+                    }
+                },
+                open: function (event, ui) {
+                    changeDialogPosition();
+                }
+            });
+
+            $('#ViewSampleFeedKeyValueDialog').dialog({
+                autoOpen: false,
+                width: 800,
+                //height: 500,
+                resizable: false,
+                title: 'View Feed Key Data',
+                modal: true,
+                buttons: {
+                    "Close": function () {
+                        $(this).dialog("close");
+                    }
+                },
+                open: function (event, ui) {
+                    changeDialogPosition();
+                }
+            });
+
+            $('#EditFieldMappingDialog').dialog({
+                autoOpen: false,
+                width: 600,
+                resizable: false,
+                title: 'Edit Field Mapping',
+                modal: true,
+                buttons: {
+                    //"Save Without Selection": function () {
+                    //    if ($('#frmEditFieldMapping').length > 0) {
+                    //        editFieldMapping(false);
+                    //    }
+                    //},
+                    "Save": function () {
+                        if ($('#frmEditFieldMapping').length > 0) {
+                            if ($("#frmEditFieldMapping").valid()) {
+                                var selectedNodeCount = $("#FeedKeyTree").jstree("get_selected").length;
+
+                                if (selectedNodeCount == 0) {
+                                    toastr.error("Please select at least one feed key from the tree view");
+                                    return;
+                                }
+
+                                editFieldMapping(true);
+                            }
+                        }
+                    },
+                    "Close": function () {
+                        $(this).dialog("close");
+                    }
+                },
+                open: function (event, ui) {
+
+                    $('#frmEditFieldMapping').validate({
+                        rules: {
+                            FeedKeyPath: { required: true }
+                        }
+                    });
+                }
+            });
+
+            $('#AddCustomFeedKeyMappingDialog').dialog({
+                autoOpen: false,
+                width: 600,
+                //height: 500,
+                resizable: false,
+                title: 'Add Custom Feed Key',
+                modal: true,
+                buttons: {
+                    "Save": function () {
+                        if ($('#frmCreateCustomFeedKeyMapping').length > 0) {
+                            if ($("#frmCreateCustomFeedKeyMapping").valid()) {
+                                var selectedNodeCount = $("#frmCreateCustomFeedKeyMapping #LeafFeedKeyTree").jstree("get_selected").length;
+
+                                if (selectedNodeCount == 0) {
+                                    toastr.error("Please select at least one feed key from the tree view");
+                                    return;
+                                }
+
+                                createCustomFeedMapping();
+                            }
+                        }
+                    },
+                    "Close": function () {
+                        $(this).dialog("close");
+                    }
+                },
+                open: function (event, ui) {
+                    changeDialogPosition();
+
+                    if ($('#frmCreateCustomFeedKeyMapping').length > 0) {
+                        $('#frmCreateCustomFeedKeyMapping').validate({
+                            rules: {
+                                CustomKeyName: {
+                                    required: true,
+                                    remote: {
+                                        url: '@Url.Action("CheckFeedColumnName", "FeedProvider")',
+                                        type: "post",
+                                        data: {
+                                            FeedProviderId: function () {
+                                                return $("#Id").val();
+                                            },
+                                            columnName: function () {
+                                                return $("#frmCreateCustomFeedKeyMapping #CustomKeyName").val();
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            messages: {
+                                CustomKeyName: {
+                                    required: "This field is required.",
+                                    remote: "Custom Key Name already exists."
+                                }
+                            }
+                        });
+                    }
+                    
+                },
+                close: function (event, ui) {
+                    //$("#frmCreateCustomFeedKeyMapping").remove();
+                }
+            });
+
+            $('#EditCustomFeedKeyMappingDialog').dialog({
+                autoOpen: false,
+                width: 600,
+                //height: 500,
+                resizable: false,
+                title: 'Edit Custom Feed Key',
+                modal: true,
+                buttons: {
+                    "Save": function () {
+                        if ($('#frmEditCustomFeedKeyMapping').length > 0) {
+                            if ($("#frmEditCustomFeedKeyMapping").valid()) {
+                                var selectedNodeCount = $("#frmEditCustomFeedKeyMapping #LeafFeedKeyTree").jstree("get_selected").length;
+
+                                if (selectedNodeCount == 0) {
+                                    toastr.error("Please select at least one feed key from the tree view");
+                                    return;
+                                }
+
+                                editCustomFeedMapping();
+                            }
+                        }
+                    },
+                    "Close": function () {
+                        $(this).dialog("close");
+                    }
+                },
+                open: function (event, ui) {
+                    changeDialogPosition();
+
+                    if ($('#frmEditCustomFeedKeyMapping').length > 0) {
+                        $('#frmEditCustomFeedKeyMapping').validate({
+                            rules: {
+                                CustomKeyName: {
+                                    required: true,
+                                    remote: {
+                                        url: '@Url.Action("CheckFeedColumnName", "FeedProvider")',
+                                        type: "post",
+                                        data: {
+                                            id: function () {
+                                                return $("#frmEditCustomFeedKeyMapping #Id").val();
+                                            },
+                                            FeedProviderId: function () {
+                                                return $("#Id").val();
+                                            },
+                                            columnName: function () {
+                                                return $("#frmEditCustomFeedKeyMapping #CustomKeyName").val();
+                                            },
+                                        }
+                                    }
+                                }
+                            },
+                            messages: {
+                                CustomKeyName: {
+                                    required: "This field is required.",
+                                    remote: "Custom Key Name already exists."
+                                }
+                            }
+                        });
+                    }
+                    
+                },
+                close: function (event, ui) {
+                    //$("#frmEditCustomFeedKeyMapping").remove();
+                }
+            });
+
+            $.validator.addMethod("checkTags", function (value)     {
+                //add custom method
+                //Tags input plugin converts input into div having id #YOURINPUTID_tagsinput
+                //now you can count no of tags
+                return ($("#PossibleMatches").prev(".bootstrap-tagsinput").find('.tag').length > 0);
+            });
+
+            $("#btnConfirm").click(function () {
+                arrFeedMapping = [], arrFeedMappingFinal = [];
+                //confirm feed analysis
+                var feedProviderId = $("#Id").val();
+
+                //get feed mapping done in the matched section
+                GetMappingByTableId($('#tblMatchesFound'));
+                //get feed mapping done in the not matched ection
+                GetMappingByTableId($('#tblMatchesNotFound'));
+
+                if (arrFeedMapping.length == 0) {
+                    toastr.error("Please map at least one feed key with column name");
+                    return;
+                }
+                //ajax call to save data
+                $.ajax({
+                    url: '@Url.Action("ConfirmFeedAnalysis","FeedProvider")',
+                    data: JSON.stringify({ 'lstFeedMapping': arrFeedMappingFinal, 'feedProviderId': feedProviderId, 'IsFeedMappingChanged': arrFeedMappingFinal.length > 0 }),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, textStatus, jQxhr) {
+                        if (data.status == true)
+                        {
+                            //location.href = '@Url.Action("Index", "FeedProvider")';
+                            window.location.reload();
+                        }
+                        else
+                            toastr.error(data.message);
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+
+                        toastr.error("Something went wrong. Please try again soon.");
+                    }
+                });
+            });
+
+            $(document).on('click', '.editFieldMapping:enabled', function () {
+                openEditFieldMapping(this);
+            });
+        });
+
+        function changeDialogPosition() {
+            $('.modal').dialog("option", "position", { my: "center top", at: "center top+50", of: window });
+        }
+
+        function GetMappingByTableId(table) {
+            $(table).find("tbody tr:not(.childrow)").each(function (i, obj) {
+                GetMappingByTableIdInner(i, obj);
+            });
+        }
+
+        function GetMappingByTableIdInner(i, obj) {
+            var feedProviderId = $("#Id").val();
+            var prevFeedKeyPath = $(obj).data("feedKeyPath");
+
+            var tableName = $($(obj).find('.tableName')[0]).text(),
+            columnName = $($(obj).find('.actualColumnName')[0]).val(),
+            feedKeyPath = $($(obj).find('.feedKeyPath > span')[0]).text();
+
+            if (tableName != undefined && tableName != '') {
+                var parentId = $($(obj).find('.parentId')[0]).val();
+                var feedMappingParentId = $($(obj).find('.feedMappingParentId')[0]).val();
+                
+                var isCustomFeedKey = $($(obj).find('.isCustomFeedKey')[0]).val();
+
+                var actualFeedKeyPath = $($(obj).find('.actualFeedKeyPath')[0]).val();
+                var ColumnDataType = $($(obj).find('.ColumnDataType')[0]).val();
+                var oldPosition = $($(obj).find('#old_Position')[0]).val();
+                var newPosition = $($(obj).find('#new_Position')[0]).val();
+
+                var feedMappingObj = {
+                    FeedProviderId: feedProviderId,
+                    ParentId: parentId,
+                    FeedMappingParentId: feedMappingParentId,
+                    IsCustomFeedKey: isCustomFeedKey,
+                    TableName: tableName,
+                    ColumnName: columnName,
+                    FeedKeyPath: feedKeyPath,
+                    ActualFeedKeyPath: actualFeedKeyPath,
+                    ColumnDataType: ColumnDataType,
+                    Position: newPosition
+                };
+
+                if (prevFeedKeyPath != feedKeyPath || oldPosition != newPosition)
+                    arrFeedMappingFinal.push(feedMappingObj);
+
+                arrFeedMapping.push(feedMappingObj);
+            }
+
+            if ($(obj).hasClass('childrow')) {
+                var matchedFields = $('.childrow').children('.matchedFields');
+
+                var tableCount = $(matchedFields).find('table').length;
+
+                if (tableCount > 0) {
+                    GetMappingByTableId($(matchedFields).find('table')[0]);
+                }
+
+                var nonMatchedFields = $('.childrow').children('.nonMatchedFields');
+
+                var tableCount = $(nonMatchedFields).find('table').length;
+
+                if (tableCount > 0) {
+                    GetMappingByTableId($(nonMatchedFields).find('table')[0]);
+                }
+            }
+        }
+
+        function openViewSampleJson() {
+            var feedProviderId = $("#Id").val();
+            $("#ViewSampleJsonDialog pre").load('@(Url.Action("ViewItemJson", "FeedProvider"))/' + feedProviderId, function (response, status, xhr) {
+                $("#ViewSampleJsonDialog").dialog("open");
+            });
+        }
+
+        function openEditFieldMapping(row) {            
+            if (row != null || row != undefined) {
+                var feedProviderId = $("#Id").val();
+                var tableName = $($(row).parent().parent().find('.tableName')[0]).text(),
+                    actualColumnName = $($(row).parent().parent().find('.actualColumnName')[0]).val(),
+                    feedKeyPath = $($(row).parent().parent().find('.feedKeyPath > span')[0]).text(),
+                    ColumnDataType = $($(row).parent().parent().find('.ColumnDataType')[0]).val(),
+                    parentFeedKeyPath = '';
+
+                var childRow = $(row).closest('tr.childrow');
+
+                if (childRow.length == 1) {
+                    parentFeedKeyPath = $(childRow.prev('tr').find('.feedKeyPath > span')[0]).text();
+                }
+
+                var baseUrl = '@Url.Action("EditFieldMapping", "FeedProvider")';
+                var finalUrl = baseUrl + '/' + feedProviderId + "?tableName=" + tableName + "&columnName=" + actualColumnName + "&feedKeyPath=" + encodeURIComponent(feedKeyPath) + "&parentFeedKeyPath=" + encodeURIComponent(parentFeedKeyPath);
+
+                //$("#EditFieldMappingDialog").dialog("open");
+
+                $("#EditFieldMappingDialog").load(finalUrl, function (response, status, xhr) {
+                    $("#EditFieldMappingDialog").dialog("open");
+                });
+            }
+        }
+
+        function openViewSampleFeedKeyValue(row) {
+            if (row != null || row != undefined) {
+                var html = '';
+                var feedProviderId = $("#Id").val();
+
+                var tableName = $($(row).parent().parent().find('.tableName')[0]).text();
+                var columnName = $($(row).parent().parent().find('.columnName span')[0]).text();
+                var feedKeyPath = $($(row).parent().parent().find('.feedKeyPath > span')[0]).text();
+                var actualFeedKeyPath = $($(row).parent().parent().find('.actualFeedKeyPath')[0]).val();
+
+                html += '<table class="table table-bordered table-striped">';
+                html += '   <tr>'
+                html += '       <th>Table Name</th>'
+                html += '       <td>' + tableName + '</td>'
+                html += '   </tr>'
+                html += '   <tr>'
+                html += '       <th>Column Name</th>'
+                html += '       <td>' + columnName + '</td>'
+                html += '   </tr>'
+                html += '   <tr>'
+                html += '       <th>Feed Key</th>'
+                html += '       <td>' + feedKeyPath + '</td>'
+                html += '   </tr>'
+                html += '</table>';
+
+                $("#ViewSampleFeedKeyValueDialog").children('div').html(html);
+
+                var baseUrl = '@Url.Action("ViewFeedKeyJson", "FeedProvider")';
+                var finalUrl = baseUrl + '?id=' + feedProviderId + "&jsonPath=" + encodeURIComponent(actualFeedKeyPath);
+               
+                $("#ViewSampleFeedKeyValueDialog").children('pre').load(finalUrl, function (response, status, xhr) {
+                    $("#ViewSampleFeedKeyValueDialog").dialog("open");
+                });
+            }
+        }
+
+        function openAddCustomFeedKey() {
+            var feedProviderId = $("#Id").val();
+            $("#AddCustomFeedKeyMappingDialog").load('@(Url.Action("CreateCustomFeedKeyMapping", "FeedProvider"))/' + feedProviderId, function (response, status, xhr) {
+                $("#AddCustomFeedKeyMappingDialog").dialog("open");
+            });
+        }
+
+        function openEditCustomFeedKey(id) {
+            var feedProviderId = $("#Id").val();
+            $("#EditCustomFeedKeyMappingDialog").load('@(Url.Action("EditCustomFeedKeyMapping", "FeedProvider"))?id=' + id + '&feedProviderId=' + feedProviderId, function (response, status, xhr) {
+                $("#EditCustomFeedKeyMappingDialog").dialog("open");
+            });
+        }
+
+        function editFieldMapping(isSelection) {
+            var tableName = $("#TableName").val();
+            var columnName = $("#ColumnName").val();
+            var actualColumnName = $("#ActualColumnName").val();
+            var feedKeyNodeValue = $("#FeedKeyPath").val();
+            var feedKeyPath = '';
+            var actualFeedKeyPath = '';
+            var columnDataType = '';
+
+            if (isSelection == true) {
+                var feedKeyPathNodeParts = feedKeyNodeValue.split('||');
+                feedKeyPath = feedKeyPathNodeParts[0];
+                actualFeedKeyPath = feedKeyPathNodeParts[1];
+                columnDataType = feedKeyPathNodeParts[2]
+            }
+            var tblMatchesFoundRow = $("#tblMatchesFound tbody tr[data-table-name='" + tableName + "'][data-column-name='" + actualColumnName + "']");
+            var tblMatchesNotFoundRow = $("#tblMatchesNotFound tbody tr[data-table-name='" + tableName + "'][data-column-name='" + actualColumnName + "']");
+
+            if (tblMatchesFoundRow.length == 1) {
+                moveRowToTargetTable(tblMatchesFoundRow, isSelection ,feedKeyPath, actualFeedKeyPath, columnDataType);
+            }
+            else if (tblMatchesNotFoundRow.length == 1) {
+                moveRowToTargetTable(tblMatchesNotFoundRow, isSelection ,feedKeyPath, actualFeedKeyPath, columnDataType);
+            }
+
+            $("#EditFieldMappingDialog").dialog("close");
+        }
+
+        function moveRowToTargetTable(element, isSelection ,feedKeyPath, actualFeedKeyPath, columnDataType) {
+            if (element.length == 1) {
+                var feedKeyPathElement = element.find('.feedKeyPath > span');
+                var actualFeedKeyPathElement = element.find('.actualFeedKeyPath');
+                var ColumnDataTypeElement = element.find('.ColumnDataType');
+                $(feedKeyPathElement[0]).text(feedKeyPath);
+                $(actualFeedKeyPathElement[0]).val(actualFeedKeyPath);
+                $(ColumnDataTypeElement[0]).val(columnDataType);
+
+                var childRow = $(element).next('.childrow');
+
+                var matchedFields;
+                var nonMatchedFields;
+                var targetTbody;
+                var sourceTbody;
+
+                if (isSelection == true) {
+                    nonMatchedFields = $(element).closest('.nonMatchedFields');
+
+                    //check if need to move to target element
+                    if (nonMatchedFields.length == 0)
+                        return;
+
+                    //get first closest one
+                    nonMatchedFields = nonMatchedFields[0];
+                    matchedFields = $(nonMatchedFields).prev('.matchedFields');
+                }
+                else {
+                    matchedFields = $(element).closest('.matchedFields');
+
+                    //check if need to move to target element
+                    if (matchedFields.length == 0)
+                        return;
+
+                    //get first closest one
+                    matchedFields = matchedFields[0];
+                    nonMatchedFields = $(matchedFields).next('.nonMatchedFields');
+                }
+
+                if (isSelection == true) {
+                    //recursively move all childs from non-matched to matched section
+                    sourceTbody = $(nonMatchedFields).children().children().children('table > tbody');
+                    targetTbody = $(matchedFields).children().children().children('table > tbody');
+
+                    if (targetTbody.length > 0) {
+                        //get the first immediate tbody
+                        targetTbody = targetTbody[0];
+
+                        $(targetTbody).children('tr.trNotFound').hide();
+
+                        //this will move row from source and append it to target element
+                        $(targetTbody).append(element);
+
+                        if (childRow.length == 1) {
+                            $(targetTbody).append(childRow);
+
+                            //enable buttons of child feed key mappings
+                            var childMatchedFieldsTable = $(childRow).children().children('.matchedFields').children().children('table');
+                            var childNonMatchedFieldsTable = $(childRow).children().children('.nonMatchedFields').children().children('table')
+
+                            if (childMatchedFieldsTable.length > 0) {
+                                childMatchedFieldsTable = childMatchedFieldsTable[0];
+
+                                var childMatchedRows = $(childMatchedFieldsTable).children('tbody').children('tr');
+
+                                if (childMatchedRows.length > 0) {
+                                    for (var i = 0; i < childMatchedRows.length; i++) {
+                                        var changeBtn = $(childMatchedRows[i]).children().children('.editFieldMapping');
+                                        if (changeBtn.length != 0) {
+                                            $(changeBtn).removeAttr('disabled');
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (childNonMatchedFieldsTable.length > 0) {
+                                childNonMatchedFieldsTable = childNonMatchedFieldsTable[0];
+
+                                var childNonMatchedRows = $(childNonMatchedFieldsTable).children('tbody').children('tr');
+
+                                if (childNonMatchedRows.length > 0) {
+                                    for (var i = 0; i < childNonMatchedRows.length; i++) {
+                                        var changeBtn = $(childNonMatchedRows[i]).children().children('.editFieldMapping');
+                                        if (changeBtn.length != 0) {
+                                            $(changeBtn).removeAttr('disabled');
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (sourceTbody.length > 0) {
+                            //get the first immediate tbody
+                            sourceTbody = sourceTbody[0];
+                            var trCount = $(sourceTbody).children('tr').length;
+
+                            //check if all rows moved except not found one
+                            if (trCount == 1)
+                                $(sourceTbody).children('tr.trNotFound').show();
+                        }
+                    }
+                }
+                else {
+                    //recursively move all childs from matched to non-matched section
+                    sourceTbody = $(matchedFields).children().children().children('table > tbody');
+                    targetTbody = $(nonMatchedFields).children().children().children('table > tbody');
+
+                    if (targetTbody.length > 0) {
+                        //get the first immediate tbody
+                        targetTbody = targetTbody[0];
+
+                        $(targetTbody).children('tr.trNotFound').hide();
+
+                        //this will move row from source and append it to target element
+                        $(targetTbody).append(element);
+
+                        if (childRow.length == 1) {
+                            $(targetTbody).append(childRow);
+
+                            var childMatchedFieldsTable = $(childRow).children().children('.matchedFields').children().children('table');
+                            var childNonMatchedFieldsTable = $(childRow).children().children('.nonMatchedFields').children().children('table')
+
+                            //this will move all rows from matched table to non-matched table
+                            if (childMatchedFieldsTable.length > 0) {
+                                childMatchedFieldsTable = childMatchedFieldsTable[0];
+
+                                var childMatchedRows = $(childMatchedFieldsTable).children('tbody').children('tr:not(.trNotFound)');
+
+                                if (childMatchedRows.length > 0) {
+                                    for (var i = 0; i < childMatchedRows.length; i++) {
+                                        moveRowToTargetTable($(childMatchedRows[i]), isSelection, feedKeyPath, actualFeedKeyPath, columnDataType);
+                                        //var changeBtn = $(childMatchedRows[i]).children().children('.editFieldMapping');
+                                        //if (changeBtn.length != 0) {
+                                        //    $(changeBtn).attr('disabled', 'disabled');
+                                        //}
+                                    }
+                                }
+                            }
+
+                            //disable buttons of child feed key mappings
+                            if (childNonMatchedFieldsTable.length > 0) {
+                                childNonMatchedFieldsTable = childNonMatchedFieldsTable[0];
+
+                                var childNonMatchedRows = $(childNonMatchedFieldsTable).children('tbody').children('tr');
+
+                                if (childNonMatchedRows.length > 0) {
+                                    for (var i = 0; i < childNonMatchedRows.length; i++) {
+                                        var changeBtn = $(childNonMatchedRows[i]).children().children('.editFieldMapping');
+                                        if (changeBtn.length != 0) {
+                                            $(changeBtn).attr('disabled', 'disabled');
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (sourceTbody.length > 0) {
+                            //get the first immediate tbody
+                            sourceTbody = sourceTbody[0];
+                            var trCount = $(sourceTbody).children('tr').length;
+                            //check if all rows moved except not found one
+                            if (trCount == 1)
+                                $(sourceTbody).children('tr.trNotFound').show();
+                        }
+                    }
+                }
+            }
+        }
+
+        function createCustomFeedMapping() {
+            var feedProviderId = $("#Id").val();
+            var customKeyName = $("#frmCreateCustomFeedKeyMapping #CustomKeyName").val();
+            var feedKeyPath = $("#frmCreateCustomFeedKeyMapping #FeedKeyPath").val();
+
+            var input = {
+                FeedProviderId: feedProviderId,
+                CustomKeyName: customKeyName,
+                FeedKeyPath: feedKeyPath
+            };
+
+            //ajax call to save data
+            $.ajax({
+                url: '@Url.Action("CreateCustomFeedKeyMapping", "FeedProvider")',
+                data: input,
+                type: 'POST',
+                success: function (data, textStatus, jQxhr) {
+                    if (data.status == true) {
+                        $("#AddCustomFeedKeyMappingDialog").dialog("close");
+                        location.reload(true);
+                    }
+                    else {
+                        toastr.error(data.message);
+                    }
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+
+                    toastr.error("Something went wrong. Please try again soon.");
+                }
+            });
+        }
+
+        function editCustomFeedMapping() {
+            var id = $("#frmEditCustomFeedKeyMapping #Id").val();
+            var feedProviderId = $("#Id").val();
+            var customKeyName = $("#frmEditCustomFeedKeyMapping #CustomKeyName").val();
+            var feedKeyPath = $("#frmEditCustomFeedKeyMapping #FeedKeyPath").val();
+
+            var input = {
+                Id: id,
+                FeedProviderId: feedProviderId,
+                CustomKeyName: customKeyName,
+                FeedKeyPath: feedKeyPath
+            };
+
+            //ajax call to save data
+            $.ajax({
+                url: '@Url.Action("EditCustomFeedKeyMapping", "FeedProvider")',
+                data: input,
+                type: 'POST',
+                success: function (data, textStatus, jQxhr) {
+
+                    if (data.status == true) {
+                        $("#EditCustomFeedKeyMappingDialog").dialog("close");
+                        location.reload(true);
+                    }
+                    else {
+                        toastr.error(data.message);
+                    }
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+
+                    toastr.error("Something went wrong. Please try again soon.");
+                }
+            });
+        }
+
+        function openDeleteCustomFeedKey(id) {
+            swal({
+                title: 'Are you sure to delete this custom feed key?',
+                text: "You will not be able to recover!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then(function () {
+
+                deleteCustomFeedKey(id);
+            },
+            function () {
+            });
+        }
+
+        function deleteCustomFeedKey(id) {
+            var url = '@Url.Action("DeleteCustomFeedKeyMapping", "FeedProvider")';
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: { "id": id },
+                success: function (data) {
+                    if (data.status == true) {
+                        location.reload(true);
+                    }
+                    else {
+                        toastr.error(data.message);
+                    }
+                },
+                error: function (reponse) {
+                    toastr.error("Something went wrong. Please try again soon.");
+                }
+            });
+        }        
+
+        function activateDeactivateFeed(id, isActive) {
+            swal({
+                title: 'Are you sure to activate/deactivate this feed key?',
+                text: "You will not be able to recover",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then(function () {
+                $.ajax({
+                    url: '@Url.Action("ActivateDeactivateFeedKey", "FeedProvider")',
+                    type: "POST",
+                    data: { "id": id, "isActive": isActive },                   
+                    success: function (data) {
+                        if (data.status == true) {
+                            location.reload(true);
+                        }
+                        else {
+                            toastr.error(data.message);
+                        }
+                    },
+                    error: function (reponse) {
+                        toastr.error("Something went wrong. Please try again soon.");
+                    }
+                });
+            });
+        }
+    </script>
+}

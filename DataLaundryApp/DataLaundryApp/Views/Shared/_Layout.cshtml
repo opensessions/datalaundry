@@ -1,0 +1,161 @@
+﻿@using Microsoft.AspNetCore.Mvc.Razor
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataLaundry | @ViewBag.Title</title>
+
+    <link type="image/x-icon" rel="shortcut icon" href="~/img/data_laundry.png" />
+    <link type="image/x-icon" rel="icon" href="~/img/data_laundry.png" />
+
+    @*@Styles.Render("~/Content/css")*@
+     <link rel="stylesheet" href="~/font-awesome/css/font-awesome.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/toastr/toastr.min.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/sweetalert2/sweetalert2.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/touchspin/jquery.bootstrap-touchspin.min.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/jsTree/style.min.css"> 
+     <link rel="stylesheet" href="~/Content/bootstrap.min.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/iCheck/custom.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/select2/select2.min.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/bootstrap-multiselect/bootstrap-multiselect.css"> 
+     <link rel="stylesheet" href="~/Content/animate.css"> 
+     <link rel="stylesheet" href="~/Content/style.css"> 
+     <link rel="stylesheet" href="~/Content/Site.css"> 
+
+     <link rel="stylesheet" href="~/Content/plugins/jQueryUI/jquery-ui.min.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/datatables/datatables.min.css"> 
+     <!-- <link rel="stylesheet" href="~/Content/plugins/datatables/dataTables.bootstrap.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/datatables/dataTables.responsive.css"> 
+     <link rel="stylesheet" href="~/Content/plugins/datatables/dataTables.tableTools.min.css">  -->
+
+    <style>
+        .ui-widget-overlay {
+            z-index: 10001;
+        }
+
+        .ui-widget-overlay {
+            z-index: 10000;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="dvLoading" class="sk-spinner-center" style="display:none;">
+        <div class="sk-spinner sk-spinner-circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+    <div id="wrapper">
+        @Html.Partial("_SideMenu")
+
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="javascript:void(0);"><i class="fa fa-bars"></i> </a>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Welcome to DataLaundry</span>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Logout","Account")">
+                                <i class="fa fa-sign-out"></i> Log out
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            @RenderBody()
+
+            <div class="footer">
+                <div>
+                    <strong>&copy;</strong> @DateTime.Now.Year DataLaundry
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Scripts/Custom/CommonFunctions.js"></script>
+    <script src="~/Scripts/inspinia.js"></script>
+    <script src="~/Scripts/plugins/pace/pace.min.js"></script>
+    <script src="~/Scripts/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/Scripts/plugins/fullcalendar/moment.min.js"></script>
+    <script src="~/Scripts/plugins/fullcalendar/moment-timezone.min.js"></script>
+    <script src="~/Scripts/plugins/fullcalendar/moment-timezone-with-data.min.js"></script>
+    <script src="~/Scripts/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/plugins/toastr/toastr.min.js"></script>
+    <script src="~/Scripts/plugins/sweetalert2/sweetalert2.js"></script>
+    <script src="~/Scripts/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/Scripts/plugins/select2/select2.full.min.js"></script>
+    <script src="~/Scripts/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Scripts/plugins/jsTree/jstree.min.js"></script>
+    <script src="~/Scripts/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+    <script src="~/Scripts/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+    
+    <script src="~/Scripts/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/plugins/datatables/dataTables.bootstrap.js"></script>
+    <script src="~/Scripts/plugins/datatables/dataTables.responsive.js"></script>
+    <script src="~/Scripts/plugins/datatables/dataTables.tableTools.min.js"></script>
+    
+    @RenderSection("scripts", false)
+    <script>        
+        $(document).ready(function () {
+            var responseMsg = '@TempData["ResponseMsg"]';
+            var responseStatus = '@TempData["ResponseStatus"]';
+            if (responseMsg != "" && responseStatus != "") 
+            {
+                if (responseStatus == "success")
+                    toastr.success(responseMsg);
+                else if (responseStatus == "warning")
+                    toastr.warning(responseMsg);
+                else if (responseStatus == "info")
+                    toastr.info(responseMsg);
+                else
+                    toastr.error(responseMsg);
+            }
+            //show and hide ajax loader from single place only
+            
+                $(document).on({
+                    ajaxStart: showLoader,
+                    ajaxStop: hideLoader,
+                    ajaxError: showErrorMessage
+                });
+               
+            //Get Time Zone Details
+            var dt = new Date();
+            var tzo = dt.getTimezoneOffset();
+            document.cookie = "timeZoneOffset=" + tzo + "; path=/";
+        });
+
+        function showErrorMessage(xhr, status, err) {
+            if (status.status && status.status != 401)
+                toastr.error("Something went wrong. Please try again soon.");
+        }
+    </script>   
+</body>
+</html>

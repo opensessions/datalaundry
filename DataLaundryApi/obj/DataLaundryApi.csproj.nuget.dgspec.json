@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "restore": {
+    "/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/DataLaundryApi.csproj": {}
+  },
+  "projects": {
+    "/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/DataLaundryApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/DataLaundryApi.csproj",
+        "projectName": "DataLaundryApi",
+        "projectPath": "/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/DataLaundryApi.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Applications/08-07-2019/Jishan/#NetCore/Final/DataLaundryApi/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "System.Data.DataSetExtensions": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "System.Runtime.Caching": {
+              "target": "Package",
+              "version": "(, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

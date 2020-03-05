@@ -1,0 +1,1877 @@
+﻿@using DataLaundryDAL.DTO;
+@using DataLaundryApp.ViewModels;
+@model Tuple<FeedProvider, vmFilterRule>
+@{
+    ViewBag.Title = "Add Rule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lstvmJsTree = ViewBag.FieldNameList as IEnumerable<JSTree>;
+    var lstOperationType = ViewBag.OperationType as List<OperationTypeMaster>;
+
+}
+<link href="@Url.Content("~/Content/plugins/dropdowntree/dropdowntree.css")" rel="stylesheet" />
+
+<style>
+    .criteria-form .form-group label {
+        display: block;
+    }
+
+    .form-inline.criteria-form .form-group {
+        margin-right: 20px;
+    }
+
+        .form-inline.criteria-form .form-group:last-child {
+            margin-right: 0;
+        }
+
+    .devider-text {
+        padding: 20px 10px;
+        font-size: 16px;
+        display: inline-block;
+    }
+
+    .criteria-form .btn-group {
+        clear: both;
+        display: block;
+        position: relative;
+        margin: 10px 0;
+        padding: 15px 0 0;
+    }
+
+        .criteria-form .btn-group button {
+            margin-right: 20px;
+        }
+
+    .bulkdata-form .form-group {
+        display: block;
+    }
+
+    .update_bulkdata {
+        margin-top: 50px;
+    }
+
+        .update_bulkdata textarea {
+            margin-top: 15px;
+        }
+
+    .dot {
+        height: 10px;
+        width: 10px;
+        background-color: #ca1111;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 10%;
+        margin-top: 10px;
+        float: right;
+    }
+    .highlight {
+        background-color:#ffd800;
+        font-weight:bold;
+    }
+
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@ViewBag.Title</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Page","FilterRules",new { id=Model.Item1.Id})">Rule</a>
+            </li>
+            <li class="active">
+                <strong>@ViewBag.Title</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add New Filter</h4>
+            </div>
+            <div class="modal-body">
+                <div role="form" class="form-inline criteria-form">
+                    <div class="criteria-form-block">
+                        <div class="form-group">
+                            <label>Operator</label>
+                            <select class="form-control" name="">
+                                <option value="1" selected="selected">AND</option>
+                                <option value="2">OR</option>
+                                <option value="2">ADD</option>
+                                <option value="2">SUB</option>
+                                <option value="3">Is equal to</option>
+                                <option value="2">Is Less Than</option>
+                                <option value="3">Is Greater Than</option>
+                                <option value="3">Contain</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- Modal -->
+<div id="sessionPopup">
+    <div class="modal fade" id="successPopup" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h1><strong>Operation Complete Successfully</strong></h1>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    @if(Model!=null && Model?.Item1?.Id > 0)
+    {
+        @Html.Partial("_Details", Model.Item1)
+    <form action="@Url.Action("Create","FilterRules")" method="post" id="frmRuleCreate" autocomplete="off">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>Rule</h5>
+            </div>            
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group" role="form">
+                            <label>Rule Name</label>
+                            <input name="RuleName" data-val="true" data-val-required="The Name field is required." id="RuleName" type="text" class="form-control" value="" required="">
+                            <span class="field-validation-valid text-danger" data-valmsg-for="RuleName" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="margin-20px-right w3-bar-item w3-button tablink w3-red"> @Html.CheckBox("IsEnable", true) Enable</label>
+                    </div>
+                </div>
+            </div>
+            <!-- ibox-content end -->
+        </div>
+        <div id="session" class="ibox">
+            <div class="ibox-title">
+                <h5>Filter Criteria</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="jsTableFilter table">
+                            <tbody class="jsTableFilterBody">
+                                <tr data-index="0">
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(m => m.Item2.FieldId)
+                                                    <div class="dropdown dropdown-tree FieldId_tree" id="FieldId_Roottree_0">
+                                                    </div>
+                                                    <input type="hidden" name="FilterCriteria[0].FieldId" class="jsFeeddata jsFieldId" data-for="FieldId_Roottree_0">
+                                                    <span class="jsValidFieldId text-danger" data-for="FilterCriteria[0].FieldId"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label>Operator</label>
+                                                    @*<select class="form-control" name="FilterCriteria[0].OperatorId">
+                                                            <option value="0">Please select operator</option>
+                                                            <option value="1" selected="selected">Is Equal To</option>
+                                                            <option value="2">Is Less Than</option>
+                                                            <option value="3">Is Greater Than</option>
+                                                            <option value="4">Contain</option>
+                                                        </select>*@
+                                                    @Html.DropDownList("FilterCriteria[0].OperatorId", new SelectList(ViewBag.Operator, "Id", "Name"), new { @class = "form-control jsOperator", @data_for = "FieldId_Roottree_0", @onchange = "Operator(this)" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <div class="form-group">
+                                                    <label>Value</label>
+                                                    <input type="text" name="FilterCriteria[0].Value" class="form-control jsValue">
+                                                    <span class="jsValidValue text-danger" data-for="FilterCriteria[0].Value"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row jsChildRow" data-index="0" style="display:none;padding-left:145px;padding-top: 10px;">
+                                            <table class="jsTableChildFilter table" style="width:auto;" data-index="0">
+                                                <tbody class="jsTableChildFilterBody" data-parent-index="0">
+                                                    <tr data-index="0">
+                                                        <td>
+                                                            <div class="row text-center" style="padding-bottom:10px;">
+                                                                <label>Operation </label>
+                                                                @*@Html.DropDownList("FilterCriteria[0].ChildFilterCriteria[0].OperationId", new SelectList(ViewBag.RuleOperator, "Id", "Name"), new { @class = "form-control" })*@
+                                                                @Html.DropDownList("FilterCriteria[0].OperationId", new SelectList(ViewBag.RuleOperator, "Id", "Name"), new { @class = "form-control" })
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(m => m.Item2.FieldId)
+                                                                    <div class="dropdown dropdown-tree FieldId_tree" id="FieldId_subchild_Roottree_0">
+                                                                    </div>
+                                                                    <input type="hidden" name="FilterCriteria[0].ChildFilterCriteria[0].FieldId" class="jsFeeddata jsChildFieldId" data-for="FieldId_subchild_Roottree_0">
+                                                                    <span class="jsValidChildFieldId text-danger" data-for="FilterCriteria[0].ChildFilterCriteria[0].FieldId"></span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Operator</label>
+                                                                    @*<select class="form-control" name="FilterCriteria[0].ChildFilterCriteria[0].OperatorId">
+                                                                            <option value="0">Please select operator</option>
+                                                                            <option value="1" selected="selected">Is Equal To</option>
+                                                                            <option value="2">Is Less Than</option>
+                                                                            <option value="3">Is Greater Than</option>
+                                                                            <option value="4">Contain</option>
+                                                                        </select>*@
+                                                                    @Html.DropDownList("FilterCriteria[0].ChildFilterCriteria[0].OperatorId", new SelectList(ViewBag.Operator, "Id", "Name"), new { @class = "form-control jsOperator", @data_for = "FieldId_subchild_Roottree_0" })
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Value</label>
+                                                                    <input type="text" class="form-control jsChildValue" name="FilterCriteria[0].ChildFilterCriteria[0].Value">
+                                                                    <span class="jsValidChildValue text-danger" data-for="FilterCriteria[0].ChildFilterCriteria[0].Value"></span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-primary margin-20px-top jsCommanChildBtn jschildcommanadd" onclick="AddChildMore(this,true,0)" data-index="0" id="btn_child_0" title="Add More Filter" type="button"><strong><i class="fa fa-plus"></i></strong></button>
+                                                            <button class="btn btn-sm btn-primary margin-20px-top jsCommanChildBtn jschildcommanremove" style="display:none;" onclick="AddChildMore(this,false,0)" data-index="0" id="btn_child_0" title="Remove More Filter" type="button"><strong><i class="fa fa-minus"></i></strong></button>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary margin-20px-top jsParentbtn btncommanadd" onclick="AddMore(this,true)" data-index="0" id="btn_0" title="Add More Filter" type="button"><strong><i class="fa fa-plus"></i></strong></button>
+                                        <button class="btn btn-sm btn-primary margin-20px-top jsParentbtn btncommanremove" style="display:none;" onclick="AddMore(this,false)" data-index="0" id="btn_0" title="Remove More Filter" type="button"><strong><i class="fa fa-minus"></i></strong></button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- ibox-content end -->
+        </div>
+        <!-- ibox end -->
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>Operation</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="w3-bar w3-black">
+                    @for (int i = 0; i < lstOperationType.Count(); i++)
+                    {
+
+                    <label class="margin-20px-right w3-bar-item w3-button tablink w3-red" onclick="openCity(event,@lstOperationType[i].OperationTypeId)"> <input type="radio" value="@lstOperationType[i].OperationTypeId" @(i == 0 ? "checked=''" : "") name="OperationTypeId" id="OperationTypeId"> @lstOperationType[i].Name</label>
+                    }
+                    @*<label class="margin-20px-right w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'value')"> <input type="radio" value="@OperationType.ValueAssignment" checked="checked" name="OperationTypeId"> Value Assignment</label>
+                        <label class="margin-20px-right w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'field')"> <input type="radio" name="OperationTypeId" value="@OperationType.FieldAssignment"> Field Assignment</label>
+                        <label class="margin-20px-right w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'keyword')"> <input type="radio" name="OperationTypeId" value="@OperationType.KeywordOrSentenceReplacement"> Keyword/Sentence Replacement</label>
+                        <label class="margin-20px-right w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'sentence')"> <input type="radio" name="OperationTypeId" value="@OperationType.RemoveSentence"> Remove Sentence </label>
+                        <label class="margin-20px-right w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'calculation')"> <input type="radio" name="OperationTypeId" value="@OperationType.Calculation"> Calculation</label>
+                        <label class="margin-20px-right w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'session')"> <input id="rm-session" type="radio" name="OperationTypeId" value="@OperationType.RemoveSession"> Remove Session</label>*@
+                </div>
+
+                <div id="1" class="w3-container w3-border city box-border-theme">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Select Field</label>
+                                <div class="dropdown dropdown-tree FieldId_tree dropdown-operation" data-for="HtmlValueFiled" id="FieldId_child_tree_0">
+                                </div>
+                                <input type="hidden" name="OperationForValue.FieldId" class="jsFeeddata jsOperationForValueFieldId" data-for="FieldId_child_tree_0" />
+                                <span class="text-danger jsValidOperationForValueFieldId" data-for="OperationForValue.FieldId"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <label>Sample Data</label>
+                            <div class="jssampleoperationdata"></div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                @*<textarea name="OperationForValue.Value" rows="5" cols="60" data-for="FieldId_child_tree_0" class="form-control margin-20px-top jsOperationForValueValue"></textarea>*@
+                                <input placeholder="Value Assignment" name="OperationForValue.Value" rows="5" cols="60" data-for="FieldId_child_tree_0" class="form-control jsOperationForValueValue" />
+                                <span class="text-danger jsValidOperationForValueValue" data-for="OperationForValue.Value"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="2" class="w3-container w3-border city box-border-theme" style="display:none">
+                    <div role="form" class="form-inline criteria-form">
+                        <div class="form-group">
+                            <label>To Be Assigned Field</label>
+                            <div class="dropdown dropdown-tree FieldId_tree" data-for="HtmlValueFiled" id="FieldId_child_tree_1">
+                            </div>
+                            <input type="hidden" name="OperationForField.FieldId" class="jsFeeddata jsOperationForFieldFieldId" data-for="FieldId_child_tree_1" />
+                            <span class="text-danger jsValidOperationForFieldFieldId" data-for="OperationForField.FieldId"></span>
+                        </div>
+                        <div class="form-group">
+                            @*<textarea name="OperationForField.Value" rows="5" cols="60" class="form-control margin-20px-top"></textarea>*@
+                            <label>From Assigned Field</label>
+                            <div class="dropdown dropdown-tree FieldId_tree" id="FieldId_child_tree_value">
+                            </div>
+                            <input type="hidden" name="OperationForField.Value" class="jsFeeddata jsOperationForFieldValue" data-for="FieldId_child_tree_value" />
+                            <span class="text-danger jsValidOperationForFieldValue" data-for="OperationForField.Value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="3" class="w3-container w3-border city box-border-theme" style="display:none">
+                    <table class="table jsKeywordSentenceTable" style="width:auto;">
+                        <tbody class="jsKeywordSentenceTableBody">
+                            <tr data-index="0">
+                                <td>
+                                    <div role="form" class="row form-inline criteria-form">
+                                        <div class="form-group">
+                                            <label>Select Field</label>
+                                            <div class="dropdown dropdown-tree FieldId_tree" data-for="HtmlValueFiled" id="FieldId_child_tree_2">
+                                            </div>
+                                            <input type="hidden" name="KeywordSentenceReplacement[0].FieldId" class="jsFeeddata jsKeywordSentenceReplacementFieldId" data-for="FieldId_child_tree_2" />
+                                            <span class="text-danger jsValidKeywordSentenceReplacementFieldId" data-for="KeywordSentenceReplacement[0].FieldId"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Current Word/Sentence</label>
+                                            <input type="text" class="form-control jsKeywordSentenceReplacementCurrentWord" placeholder="Enter Old Word" name="KeywordSentenceReplacement[0].CurrentWord">
+                                            <span class="text-danger jsValidKeywordSentenceReplacementCurrentWord" data-for="KeywordSentenceReplacement[0].CurrentWord"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>New Word/Sentence</label>
+                                            <input type="text" class="form-control jsKeywordSentenceReplacementNewWord" placeholder="Enter New Word" name="KeywordSentenceReplacement[0].NewWord">
+                                            <span class="text-danger jsValidKeywordSentenceReplacementNewWord" data-for="KeywordSentenceReplacement[0].NewWord"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="KeywordSentence(this,true)">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-sm jsKeywordSentence" style="display:none;" onclick="KeywordSentence(this,false)">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div id="4" class="w3-container w3-border city box-border-theme" style="display:none">
+                    <table class="table jsRemoveSentenceTable" style="width:auto;">
+                        <tbody class="jsRemoveSentenceTableBody">
+                            <tr data-index="0">
+                                <td>
+                                    <div role="form" class="row form-inline criteria-form">
+                                        <div class="form-group">
+                                            <label>Select Field</label>
+                                            <div class="dropdown dropdown-tree FieldId_tree" data-for="HtmlValueFiled" id="FieldId_child_tree_4">
+                                            </div>
+                                            <input type="hidden" name="RemoveSentence[0].FieldId" class="jsFeeddata jsRemoveSentenceFieldId" data-for="FieldId_child_tree_4" />
+                                            <span class="text-danger jsValidRemoveSentenceFieldId" data-for="RemoveSentence[0].FieldId"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Sentence</label>
+                                            <input type="text" class="form-control jsRemoveSentenceSentence" name="RemoveSentence[0].Sentence" placeholder="Enter Sentence">
+                                            <span class="text-danger jsValidRemoveSentenceSentence" data-for="RemoveSentence[0].Sentence"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="RemoveSentence(this, true)">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-sm jsRemoveSentence" style="display:none;" onclick="RemoveSentence(this, false)">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div id="5" class="w3-container w3-border city box-border-theme" style="display:none">
+                    <table class="table jsCalculationTable" style="width:auto;">
+                        <tbody class="jsCalculationTableBody">
+                            <tr data-index="0">
+                                <td>
+                                    <div role="form" class="row form-inline criteria-form">
+                                        <div class="form-group">
+                                            <label>Select Field</label>
+                                            <div class="dropdown dropdown-tree FieldId_tree" data-for="HtmlValueFiled" id="FieldId_child_tree_6">
+                                            </div>
+                                            <input type="hidden" name="Calculation[0].FieldId" data-for="FieldId_child_tree_6" class="jsFeeddata jsCalculationFieldId" />
+                                            <span class="text-danger jsValidCalculationFieldId" data-for="Calculation[0].FieldId"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>&nbsp;</label>
+                                            <label>=</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Select Field</label>
+                                            <div class="dropdown dropdown-tree FieldId_tree" data-for="HtmlValueFiled" id="FieldId_child_tree_7">
+                                            </div>
+                                            <input type="hidden" name="Calculation[0].FirstFieldId" data-for="FieldId_child_tree_7" class="jsFeeddata jsCalculationFirstFieldId" />
+                                            <span class="text-danger jsValidCalculationFirstFieldId" data-for="Calculation[0].FirstFieldId"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Operator</label>
+                                            <select class="form-control jsCalculationOperator" name="Calculation[0].OperatorId" data-for="FieldId_child_tree_6">
+                                                <option value="0" selected="selected">Add</option>
+                                                <option value="1">Sub</option>
+                                                <option value="2">Mul</option>
+                                                <option value="3">Div</option>
+                                                <option value="4">Concat</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Select Field</label>
+                                            <div class="dropdown dropdown-tree FieldId_tree" data-for="HtmlValueFiled" id="FieldId_child_tree_8">
+                                            </div>
+                                            <input type="hidden" name="Calculation[0].SecondFieldId" data-for="FieldId_child_tree_8" class="jsFeeddata jsCalculationSecondFieldId" />
+                                            <span class="text-danger jsValidCalculationSecondFieldId" data-for="Calculation[0].SecondFieldId"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="Calculation(this, true)">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-sm jsCalculation" style="display:none;" onclick="Calculation(this, false)">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="margin-100px-bottom session-save-btn">
+            <button class="btn btn-lg btn-primary pull-right" type="button" onclick="PostData(this);">
+                <strong>Save</strong>
+            </button>
+        </div>
+    </form>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+                Add rule not found
+            </div>
+    }    
+</div>
+<div class="hide">
+    <div class="jsChildData">
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Item2.FieldId)
+                <div class="dropdown dropdown-tree FieldId_tree" id="FieldId_subchild_tree_0">
+                </div>
+                <input type="hidden" class="jsFeeddata jsChildFieldId" data-for="FieldId_subchild_tree_0" name="FilterCriteria[-1].ChildFilterCriteria[-1].FieldId" />
+                <span class="jsValidChildFieldId text-danger" data-for="FilterCriteria[-1].ChildFilterCriteria[-1].FieldId"></span>
+            </div>
+            <div class="form-group">
+                <label>Operator</label>
+                @*<select class="form-control" name="FilterCriteria[-1].ChildFilterCriteria[-1].OperatorId">
+                        <option value="0">Please select operator</option>
+                        <option value="1" selected="selected">Is Equal To</option>
+                        <option value="2">Is Less Than</option>
+                        <option value="3">Is Greater Than</option>
+                        <option value="4">Contain</option>
+                    </select>*@
+                @Html.DropDownList("FilterCriteria[-1].ChildFilterCriteria[-1].OperatorId", new SelectList(ViewBag.Operator, "Id", "Name"), new { @class = "form-control jsOperator" })
+            </div>
+            <div class="form-group">
+                <label>Value</label>
+                <input type="text" class="form-control jsChildValue" name="FilterCriteria[-1].ChildFilterCriteria[-1].Value">
+                <span class="jsValidChildValue text-danger" data-for="FilterCriteria[-1].ChildFilterCriteria[-1].Value"></span>
+            </div>
+        </div>
+    </div>
+    <div class="jsParentData">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Item2.FieldId)
+                    <div class="dropdown dropdown-tree FieldId_tree" id="FieldId_tree_0">
+                    </div>
+                    <input type="hidden" class="jsFieldId jsFeeddata" data-for="FieldId_tree_0" name="FilterCriteria[-1].FieldId" />
+                    <span class="jsValidFieldId text-danger" data-for="FilterCriteria[-1].FieldId"></span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>Operator</label>
+                    @*<select class="form-control" name="FilterCriteria[-1].OperatorId">
+                            <option value="0">Please select operator</option>
+                            <option value="1" selected="selected">Is Equal To</option>
+                            <option value="2">Is Less Than</option>
+                            <option value="3">Is Greater Than</option>
+                            <option value="4">Contain</option>
+                        </select>*@
+                    @Html.DropDownList("FilterCriteria[-1].OperatorId", new SelectList(ViewBag.Operator, "Id", "Name"), new { @class = "form-control jsOperator", @onchange = "Operator(this)" })
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="form-group">
+                    <label>Value</label>
+                    <input type="text" class="form-control jsValue" name="FilterCriteria[-1].Value">
+                    <span class="jsValidValue text-danger" data-for="FilterCriteria[-1].Value"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row jsChildRow" data-index="-1" style="display:none;padding-left:145px;padding-top: 10px;">
+            <table class="jsTableChildFilter table" style="width:auto;" data-index="-1">
+                <tbody class="jsTableChildFilterBody" data-parent-index="-1">
+                    <tr data-index="0">
+                        <td>
+                            <div class="row text-center" style="padding-bottom:10px;">
+                                <label>Operation </label>
+                                @Html.DropDownList("FilterCriteria[-1].OperationId", new SelectList(ViewBag.RuleOperator, "Id", "Name"), new { @class = "form-control" })
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Item2.FieldId)
+                                    <div class="dropdown dropdown-tree FieldId_tree" id="FieldId_tree_withparent">
+                                    </div>
+                                    <input type="hidden" name="FilterCriteria[-1].ChildFilterCriteria[-1].FieldId" class="jsFeeddata jsChildFieldId" data-for="FieldId_tree_withparent" />
+                                    <span class="jsValidChildFieldId text-danger" data-for="FilterCriteria[-1].ChildFilterCriteria[-1].FieldId"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Operator</label>
+                                    @*<select class="form-control" name="FilterCriteria[-1].ChildFilterCriteria[-1].OperatorId">
+                                            <option value="0">Please select operator</option>
+                                            <option value="1" selected="selected">Is Equal To</option>
+                                            <option value="2">Is Less Than</option>
+                                            <option value="3">Is Greater Than</option>
+                                            <option value="4">Contain</option>
+                                        </select>*@
+                                    @Html.DropDownList("FilterCriteria[-1].ChildFilterCriteria[-1].OperatorId", new SelectList(ViewBag.Operator, "Id", "Name"), new { @class = "form-control jsOperator" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Value</label>
+                                    <input type="text" class="form-control jsChildValue" name="FilterCriteria[-1].ChildFilterCriteria[-1].Value">
+                                    <span class="jsValidChildValue text-danger" data-for="FilterCriteria[-1].ChildFilterCriteria[-1].Value"></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                            <button class="btn btn-sm btn-primary margin-20px-top jsCommanChildBtn jschildcommanadd" onclick="AddChildMore(this,true,0)" data-index="-1" id="btn_child_0" title="Add More Filter" type="button"><strong><i class="fa fa-plus"></i></strong></button>
+                            <button class="btn btn-sm btn-primary margin-20px-top jsCommanChildBtn jschildcommanremove" style="display:none;" onclick="AddChildMore(this,false,0)" data-index="-1" id="btn_child_0" title="Remove More Filter" type="button"><strong><i class="fa fa-minus"></i></strong></button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="jsRuleOperator">
+        @Html.DropDownList("OperatiorID", new SelectList(ViewBag.RuleOperator, "Id", "Name"), new { @class = "form-control", @id = "jsRuleOperator" })
+    </div>
+    <div class="jsOperationKeyword">
+        <div role="form" class="row form-inline criteria-form">
+            <div class="form-group">
+                <label>Select Field</label>
+                <div class="dropdown dropdown-tree FieldId_tree" id="FieldId_tree_operation_Keyword">
+                </div>
+                <input type="hidden" name="KeywordSentenceReplacement[-1].FieldId" class="jsFeeddata jsKeywordSentenceReplacementFieldId" data-for="FieldId_tree_operation_Keyword" />
+                <span class="text-danger jsValidKeywordSentenceReplacementFieldId" data-for="KeywordSentenceReplacement[-1].FieldId"></span>
+            </div>
+            <div class="form-group">
+                <label>Current Word/Sentence</label>
+                <input type="text" class="form-control jsKeywordSentenceReplacementCurrentWord" placeholder="Enter Old Word" name="KeywordSentenceReplacement[-1].CurrentWord">
+                <span class="text-danger jsValidKeywordSentenceReplacementCurrentWord" data-for="KeywordSentenceReplacement[-1].CurrentWord"></span>
+            </div>
+            <div class="form-group">
+                <label>New Word/Sentence</label>
+                <input type="text" class="form-control jsKeywordSentenceReplacementNewWord" placeholder="Enter New Word" name="KeywordSentenceReplacement[-1].NewWord">
+                <span class="text-danger jsValidKeywordSentenceReplacementNewWord" data-for="KeywordSentenceReplacement[-1].NewWord"></span>
+            </div>
+        </div>
+    </div>
+    <div class="jsOperationRemoveSentence">
+        <div role="form" class="row form-inline criteria-form">
+            <div class="form-group">
+                <label>Select Field</label>
+                <div class="dropdown dropdown-tree FieldId_tree" id="FieldId_tree_remove_sentence">
+                </div>
+                <input type="hidden" name="RemoveSentence[-1].FieldId" class="jsFeeddata jsRemoveSentenceFieldId" data-for="FieldId_tree_remove_sentence" />
+                <span class="text-danger jsValidRemoveSentenceFieldId" data-for="RemoveSentence[-1].FieldId"></span>
+
+            </div>
+            <div class="form-group">
+                <label>Sentence</label>
+                <input type="text" class="form-control jsRemoveSentenceSentence" name="RemoveSentence[-1].Sentence" placeholder="Enter Sentence">
+                <span class="text-danger jsValidRemoveSentenceSentence" data-for="RemoveSentence[-1].Sentence"></span>
+            </div>
+        </div>
+    </div>
+    <div class="jsOperationCalculation">
+        <div role="form" class="row form-inline criteria-form">
+            <div class="form-group">
+                <label>Select Field</label>
+                <div class="dropdown dropdown-tree FieldId_tree" data-for="HtmlValueFiled" id="FieldId_calculation_1">
+                </div>
+                <input type="hidden" name="Calculation[-1].FieldId" data-for="FieldId_calculation_1" class="jsFeeddata jsCalculationFieldId" />
+                <span class="text-danger jsValidCalculationFieldId" data-for="Calculation[-1].FieldId"></span>
+            </div>
+            <div class="form-group">
+                <label>&nbsp;</label>
+                <label>=</label>
+            </div>
+            <div class="form-group">
+                <label>Select Field</label>
+                <div class="dropdown dropdown-tree FieldId_tree" data-for="HtmlValueFiled" id="FieldId_calculation_2">
+                </div>
+                <input type="hidden" name="Calculation[-1].FirstFieldId" data-for="FieldId_calculation_2" class="jsFeeddata jsCalculationFirstFieldId" />
+                <span class="text-danger jsValidCalculationFirstFieldId" data-for="Calculation[-1].FirstFieldId"></span>
+            </div>
+            <div class="form-group">
+                <label>Operator</label>
+                <select class="form-control jsCalculationOperator" name="Calculation[-1].OperatorId" data-for="FieldId_calculation_1">
+                    <option value="0" selected="selected">Add</option>
+                    <option value="1">Sub</option>
+                    <option value="2">Mul</option>
+                    <option value="3">Div</option>
+                    <option value="4">Contain</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Select Field</label>
+                <div class="dropdown dropdown-tree FieldId_tree" data-for="HtmlValueFiled" id="FieldId_calculation_3">
+                </div>
+                <input type="hidden" name="Calculation[-1].SecondFieldId" data-for="FieldId_calculation_3" class="jsFeeddata jsCalculationSecondFieldId" />
+                <span class="text-danger jsValidCalculationSecondFieldId" data-for="Calculation[-1].SecondFieldId"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="SessionTimeoutDialog" class="modal" style="overflow: hidden;">
+</div>
+@section scripts
+    {
+    <script src="~/Scripts/plugins/dropdowntree/dropdowntree.js"></script>
+    <script type="text/javascript">
+        //Global Variables start
+        var EnumColumnDataType = {
+             NuLL: "NULL", 
+             Bool: "bool", 
+             Object: "object",
+             Float: "float",
+             Date: "date", 
+             String: "string",
+             Undefined: "undefined",
+             Integer: "integer",
+             Array: "array" 
+        }       
+
+        var dtForString = [];
+        dtForString.push({
+            "value": 3,
+            "text": "Is equals"
+        },
+        {
+            "value": 4,
+            "text": "Is not equal"
+        },
+        {
+            "value": 5,
+            "text": "Starts with"
+        },
+        {
+            "value": 6,
+            "text": "Contains"
+        },
+        {
+            "value": 7,
+            "text": "End with"
+        },
+        {
+            "value": 8,
+            "text": "Is Null"
+        }
+        );
+
+        var dtForNumber = [];
+        dtForNumber.push(
+            {
+                "value": 1,
+                "text": "Is less than"
+            },
+            {
+                "value": 2,
+                "text": "Is higher than"
+            },
+            {
+                "value": 3,
+                "text": "Is equals"
+            },
+            {
+                "value": 4,
+                "text": "Is not equal"
+            },
+            {
+                "value": 8,
+                "text": "Is Null"
+            }
+        );
+
+        var dtCalculationForString = [];
+        dtCalculationForString.push(
+            {
+                "value": 4,
+                "text": "Concat"
+            }
+            );
+
+        var dtCalculationForNumber = [];
+        dtCalculationForNumber.push(
+            {
+                "value": 0,
+                "text": "Add"
+            },
+            {
+                "value": 1,
+                "text": "Sub"
+            },
+            {
+                "value": 2,
+                "text": "Mul"
+            },
+            {
+                "value": 3,
+                "text": "Div"
+            });
+
+
+        var DateArray = ["startDate", "StartDate", "date_start", "start_date","endDate","EndDate","date_end","end_date","startTime","endTime"];
+        //End Global varibales
+
+        var lstJson = JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(lstvmJsTree))');
+        var TreeMap = [], TreeMapNotMatch = [], ChildTreeMap = [], ChildTreeMapNotMatch = [], SubChild = [], SubChildNotMatch = [];
+        RecursionMap(lstJson, false, 0, false);
+
+        function RecursionMap(lstdata, IsRecursion, index, IsRoot) 
+        {
+            try 
+            {
+                if (IsRecursion) 
+                {
+                    ChildTreeMap = [];
+                    for (var i = 0; i < lstdata.length; i++) 
+                    {
+                        var oCurrentObject = lstdata[i];
+                        //console.log(" Index -> " + i + " Data -> " + JSON.stringify(oCurrentObject));
+                        ChildTreeMap.push({
+                            "title": oCurrentObject.text + (oCurrentObject.IsMatch ? "" : "<span class=\"dot\"></span>"),
+                            "href": "#" + i,
+                            "dataAttrs": [{ "title": "dataattr" + i, "data": oCurrentObject.id }],
+                            "childindex": i                            
+                        });
+                        if (oCurrentObject.children != null && oCurrentObject.children != undefined && oCurrentObject.children.length > 0) 
+                        {
+                            if (IsRoot)
+                            {
+                                TreeMap[index].data = ChildTreeMap;
+                            }
+                            ChildRecursionMap(oCurrentObject.children, i, false, true);
+                        }
+                        if (IsRoot) 
+                        {
+                            TreeMap[index].data = ChildTreeMap;
+                        }                        
+                    }
+                }
+                else 
+                {
+                    for (var i = 0; i < lstdata.length; i++) 
+                    {
+                        var oCurrentObject = lstdata[i];
+                        TreeMap.push({
+                            "title": oCurrentObject.text + (oCurrentObject.IsMatch ? "" : "<span class=\"dot\"></span>"),
+                            "href": "#" + i,
+                            "dataAttrs": [{ "title": "dataattr" + i, "data": oCurrentObject.id }],
+                            "index": i                            
+                        });
+                        if (oCurrentObject.children != null && oCurrentObject.children != undefined && oCurrentObject.children.length > 0) 
+                        {
+                            RecursionMap(oCurrentObject.children, true, i, true);
+                        }
+                    }
+                }
+            }
+            catch (e) 
+            {
+                console.log("Error : RecursionMap : " + e.message);
+            }
+        }
+
+        function ChildRecursionMap(lstdata, index, IsRecursion, IsSubChild) 
+        {
+            try 
+            {
+                if (!IsRecursion) 
+                {
+                    SubChild = [];
+                    for (var i = 0; i < lstdata.length; i++) 
+                    {
+                        var oCurrentObject = lstdata[i];
+                        SubChild.push({
+                            "title": oCurrentObject.text + (oCurrentObject.IsMatch ? "" : "<span class=\"dot\"></span>"),
+                            "href": "#" + i,
+                            "dataAttrs": [{ "title": "dataattr" + i, "data": oCurrentObject.id }],
+                            "subchildindex": i                            
+                        });
+                        if (oCurrentObject.children != null && oCurrentObject.children != undefined && oCurrentObject.children.length > 0) 
+                        {
+                            if (IsSubChild) 
+                            {
+                                ChildTreeMap[index].data = SubChild;
+                            }
+                            ChildRecursionMap(oCurrentObject.children, i, true, false);
+                        }
+                    }
+                    if (IsSubChild) 
+                    {
+                        ChildTreeMap[index].data = SubChild;
+                    }
+                }
+                else 
+                {
+                    var PreChild = [];                    
+                    for (var i = 0; i < lstdata.length; i++) 
+                    {
+                        var oCurrentObject = lstdata[i];
+                        PreChild.push({
+                            "title": oCurrentObject.text + (oCurrentObject.IsMatch ? "" : "<span class=\"dot\"></span>"),
+                            "href": "#" + i,
+                            "dataAttrs": [{ "title": "dataattr" + i, "data": oCurrentObject.id }],
+                            "PreChildindex": i
+                        });
+                        if (oCurrentObject.children != null && oCurrentObject.children != undefined && oCurrentObject.children.length > 0) 
+                        {
+                            if (!IsSubChild) 
+                            {
+                                SubChild[index].data = PreChild;
+                            }
+                            var oTemp = [];
+                            for (var j = 0; j < oCurrentObject.children.length; j++) 
+                            {
+                                oTemp.push({
+                                    "title": oCurrentObject.children[j].text + (oCurrentObject.IsMatch ? "" : "<span class=\"dot\"></span>"),
+                                    "href": "#" + j,
+                                    "dataAttrs": [{ "title": "dataattr" + j, "data": oCurrentObject.children[j].id }],
+                                    "MorePreChildindex": j
+                                });
+                            }
+                            PreChild[i].data = oTemp;
+                        }
+                    }
+                    if (!IsSubChild) 
+                    {
+                        SubChild[index].data = PreChild;
+                    }
+                }
+            }
+            catch (e) 
+            {
+                console.log("Error : ChildRecursionMap " + e.message);
+            }
+        }
+
+        $(document).ready(function ()
+        {
+            try
+            {
+                $(".navbar-minimalize").trigger("click");
+                $(".FieldId_tree").each(function (index, elem) 
+                {
+                    var oControlID = "#" + $(elem).attr('id');
+                    SharedDropDownTree(oControlID);
+                });
+            }
+            catch (e) 
+            {
+                console.log("Error : document ready" + e.message);
+            }
+        });
+
+        function PostData(elem) 
+        {
+            if ($("#frmRuleCreate").valid() && FullValidate()) 
+            {
+                $("div").filter(":hidden").children("input[type='text'], select").attr("disabled", "disabled");
+                $("div").children("input[type='text']:hidden, select:hidden").attr("disabled", "disabled");
+                $("#frmRuleCreate").submit();
+                //alert('post');
+            }
+            console.log(FullValidate());
+        }
+
+        function openCity(evt, cityName) 
+        {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) 
+            {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) 
+            {
+                tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " w3-red";
+        }
+
+
+        //function AddMore(elem, IsAdd) {
+        //    var oHtml = [];
+        //    try {
+        //        var oIndex = 0;
+        //        if (IsAdd) {
+        //            oIndex = ($(".jsTableFilterBody > tr").length);
+        //            var oUniqueNumber = UniqueNumber();
+        //            swal({
+        //                title: 'Single or Multiple Criteria?',
+        //                text: "",
+        //                type: 'warning',
+        //                showCancelButton: true,
+        //                confirmButtonColor: '#3085d6',
+        //                cancelButtonColor: '#3085d6',
+        //                confirmButtonText: 'Single',
+        //                cancelButtonText: 'Multiple',
+        //            }).then(function () {
+        //                oHtml.push("<tr data-index='" + oIndex + "'>");
+        //                oHtml.push("<td>");
+        //                oHtml.push("<div class='row text-center' style='padding-bottom:10px;'>");
+        //                oHtml.push("<label>Operation </label>");
+        //                oHtml.push($(".jsRuleOperator").html().replace("OperatiorID", "FilterCriteria[" + (oIndex - 1) + "].OperationId"));
+        //                oHtml.push("</div>");
+        //                var oReplaceContent = $(".jsParentData").html().replace("FieldId_tree_0", "FieldId_tree_" + oIndex);
+        //                oReplaceContent = oReplaceContent.replace(new RegExp('data-parent-index="-1"', 'g'), 'data-parent-index="' + oIndex + '"');
+        //                oReplaceContent = oReplaceContent.replace(new RegExp('data-index="-1"', 'g'), 'data-index="' + oIndex + '"');
+        //                oReplaceContent = oReplaceContent.replace("AddChildMore(this,true,0)", "AddChildMore(this,true," + oIndex + ")");
+        //                oReplaceContent = oReplaceContent.replace("AddChildMore(this,false,0)", "AddChildMore(this,false," + oIndex + ")");
+        //                oReplaceContent = oReplaceContent.replace("FieldId_tree_withparent", "FieldId_subchild_tree_" + oUniqueNumber);
+
+        //                /* Control Name replace id*/
+        //                oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].FieldId", "FilterCriteria[" + oIndex + "].FieldId");
+        //                oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].FieldId", "FilterCriteria[" + oIndex + "].FieldId");//for validation
+        //                oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].OperatorId", "FilterCriteria[" + oIndex + "].OperatorId");
+        //                oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].Value", "FilterCriteria[" + oIndex + "].Value");
+        //                oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].Value", "FilterCriteria[" + oIndex + "].Value");//for validation
+        //                oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].OperationId", "FilterCriteria[" + oIndex + "].OperationId");
+        //                /*Child Name replace id*/
+        //                // oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].OperationId", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].OperationId");
+        //                oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].FieldId", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].FieldId");
+        //                oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].FieldId", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].FieldId");//for validation
+        //                oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].OperatorId", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].OperatorId");
+        //                oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].Value", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].Value");
+        //                oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].Value", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].Value");//for validation
+        //                oHtml.push(oReplaceContent);
+
+        //                oHtml.push("</td>")
+        //                oHtml.push("</tr>");
+
+        //                $(".jsTableFilterBody").append(oHtml.join(" "));
+
+        //                var oControlID = "#FieldId_tree_" + oIndex;
+
+        //                /*Set hidden filed attributes start*/
+        //                $(".jsFeeddata[name='FilterCriteria[" + oIndex + "].FieldId']").attr("data-for", "FieldId_tree_" + oIndex);
+        //                /*End*/
+        //                //Dropdwon
+        //                $(".jsOperator[name='FilterCriteria[" + oIndex + "].OperatorId']").attr("data-for", "FieldId_tree_" + oIndex);
+        //                //for parent
+        //                SharedDropDownTree(oControlID);
+
+        //                var oChildControlID = "#FieldId_subchild_tree_" + oUniqueNumber;
+        //                $(".jsFeeddata[name='FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].FieldId']").attr("data-for", "FieldId_subchild_tree_" + oUniqueNumber);
+        //                $(".jsOperator[name='FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].OperatorId']").attr("data-for", "FieldId_subchild_tree_" + oUniqueNumber);
+
+
+
+        //                SharedDropDownTree(oChildControlID);
+
+        //                if ($(".jsTableFilterBody > tr").length > 0) {
+        //                    $(".btncommanremove").show();
+        //                }
+
+        //            }, function (dismiss) {
+        //                if (dismiss == 'cancel') {
+        //                    oIndex = ($(".jsTableFilterBody > tr").length);
+        //                    $(".jsChildRow[data-index='" + (oIndex - 1) + "']").show();
+        //                }
+        //            });
+        //        }
+        //        else {
+        //            oIndex = ($(".jsTableFilterBody > tr").length - 1);
+        //            $(".jsTableFilterBody tr[data-index='" + oIndex + "']").remove();
+        //            if ($(".jsTableFilterBody > tr").length == 1) {
+        //                $(".btncommanremove").hide();
+        //            }
+        //        }
+        //    }
+        //    catch (e) {
+        //        console.log("Error : AddMore " + e.message);
+        //    }
+        //}
+
+        function AddMore(elem, IsAdd) 
+        {
+            var oHtml = [];
+            try 
+            {
+                var oIndex = 0;
+                if (IsAdd) 
+                {
+                    oIndex = ($(".jsTableFilterBody > tr").length);
+                    var oUniqueNumber = UniqueNumber();
+
+                    oHtml.push("<tr data-index='" + oIndex + "'>");
+                    oHtml.push("<td>");
+                    oHtml.push("<div class='row text-center' style='padding-bottom:10px;padding-left: 35%;'>");
+                    oHtml.push("<div class='col-sm-2'>");
+                    oHtml.push("<label>Operation </label>");
+                    oHtml.push($(".jsRuleOperator").html().replace("OperatiorID", "FilterCriteria[" + (oIndex - 1) + "].OperationId"));
+                    oHtml.push("</div>");
+                    oHtml.push("</div>");
+                    var oReplaceContent = $(".jsParentData").html().replace("FieldId_tree_0", "FieldId_tree_" + oIndex);
+                    oReplaceContent = oReplaceContent.replace(new RegExp('data-parent-index="-1"', 'g'), 'data-parent-index="' + oIndex + '"');
+                    oReplaceContent = oReplaceContent.replace(new RegExp('data-index="-1"', 'g'), 'data-index="' + oIndex + '"');
+                    oReplaceContent = oReplaceContent.replace("AddChildMore(this,true,0)", "AddChildMore(this,true," + oIndex + ")");
+                    oReplaceContent = oReplaceContent.replace("AddChildMore(this,false,0)", "AddChildMore(this,false," + oIndex + ")");
+                    oReplaceContent = oReplaceContent.replace("FieldId_tree_withparent", "FieldId_subchild_tree_" + oUniqueNumber);
+
+                    /* Control Name replace id*/
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].FieldId", "FilterCriteria[" + oIndex + "].FieldId");
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].FieldId", "FilterCriteria[" + oIndex + "].FieldId");//for validation
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].OperatorId", "FilterCriteria[" + oIndex + "].OperatorId");
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].Value", "FilterCriteria[" + oIndex + "].Value");
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].Value", "FilterCriteria[" + oIndex + "].Value");//for validation
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].OperationId", "FilterCriteria[" + oIndex + "].OperationId");
+                    /*Child Name replace id*/
+                    // oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].OperationId", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].OperationId");
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].FieldId", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].FieldId");
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].FieldId", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].FieldId");//for validation
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].OperatorId", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].OperatorId");
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].Value", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].Value");
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].Value", "FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].Value");//for validation
+                    oHtml.push(oReplaceContent);
+
+                    oHtml.push("</td>")
+                    oHtml.push("</tr>");
+
+                    $(".jsTableFilterBody").append(oHtml.join(" "));
+
+                    var oControlID = "#FieldId_tree_" + oIndex;
+
+                    /*Set hidden filed attributes start*/
+                    $(".jsFeeddata[name='FilterCriteria[" + oIndex + "].FieldId']").attr("data-for", "FieldId_tree_" + oIndex);
+                    /*End*/
+                    //Dropdwon
+                    $(".jsOperator[name='FilterCriteria[" + oIndex + "].OperatorId']").attr("data-for", "FieldId_tree_" + oIndex);
+                    //for parent
+                    SharedDropDownTree(oControlID);
+
+                    var oChildControlID = "#FieldId_subchild_tree_" + oUniqueNumber;
+                    $(".jsFeeddata[name='FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].FieldId']").attr("data-for", "FieldId_subchild_tree_" + oUniqueNumber);
+                    $(".jsOperator[name='FilterCriteria[" + oIndex + "].ChildFilterCriteria[0].OperatorId']").attr("data-for", "FieldId_subchild_tree_" + oUniqueNumber);
+
+                    SharedDropDownTree(oChildControlID);
+
+                    if ($(".jsTableFilterBody > tr").length > 0) 
+                    {
+                        $(".btncommanremove").show();
+                    }
+                }
+                else 
+                {
+                    oIndex = ($(".jsTableFilterBody > tr").length - 1);
+                    $(".jsTableFilterBody tr[data-index='" + oIndex + "']").remove();
+                    if ($(".jsTableFilterBody > tr").length == 1) 
+                    {
+                        $(".btncommanremove").hide();
+                    }
+                }
+            }
+            catch (e) 
+            {
+                console.log("Error : AddMore " + e.message);
+            }
+        }
+
+        function AddChildMore(elem, IsAdd, ParentIndex) 
+        {
+            var oHtml = [], oIndex = 0;
+            try 
+            {
+                oIndex = $(".jsTableChildFilterBody[data-parent-index='" + ParentIndex + "'] > tr").length;
+
+                if (IsAdd) 
+                {
+                    oHtml.push("<tr data-index='" + oIndex + "'>");
+                    oHtml.push("<td>");
+                    oHtml.push("<div class='row text-center' style='padding-bottom:10px;'>");
+                    oHtml.push("<label>Operation </label>");
+                    oHtml.push($(".jsRuleOperator").html().replace("OperatiorID", "FilterCriteria[" + ParentIndex + "].ChildFilterCriteria[" + (oIndex - 1) + "].OperationId"));
+                    oHtml.push("</div>");
+
+                    var oReplaceContent = $(".jsChildData").html().replace("FieldId_subchild_tree_0", "FieldId_subchild_tree_" + oIndex + "_" + ParentIndex);
+
+                    /*all control state*/
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].FieldId", "FilterCriteria[" + ParentIndex + "].ChildFilterCriteria[" + oIndex + "].FieldId");
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].FieldId", "FilterCriteria[" + ParentIndex + "].ChildFilterCriteria[" + oIndex + "].FieldId");//for validation
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].OperatorId", "FilterCriteria[" + ParentIndex + "].ChildFilterCriteria[" + oIndex + "].OperatorId");
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].Value", "FilterCriteria[" + ParentIndex + "].ChildFilterCriteria[" + oIndex + "].Value");
+                    oReplaceContent = oReplaceContent.replace("FilterCriteria[-1].ChildFilterCriteria[-1].Value", "FilterCriteria[" + ParentIndex + "].ChildFilterCriteria[" + oIndex + "].Value");//for validation
+
+
+                    oHtml.push(oReplaceContent);
+
+                    oHtml.push("</td>");
+                    oHtml.push("</tr>");
+
+                    $(".jsTableChildFilterBody[data-parent-index='" + ParentIndex + "']").append(oHtml.join(" "));
+
+                    var oControlID = "#FieldId_subchild_tree_" + oIndex + "_" + ParentIndex;
+                    /*Set hidden filed attributes start*/
+                    $(".jsFeeddata[name='FilterCriteria[" + ParentIndex + "].ChildFilterCriteria[" + oIndex + "].FieldId']").attr("data-for", "FieldId_subchild_tree_" + oIndex + "_" + ParentIndex);
+                    $(".jsOperator[name='FilterCriteria[" + ParentIndex + "].ChildFilterCriteria[" + oIndex + "].OperatorId']").attr("data-for", "FieldId_subchild_tree_" + oIndex + "_" + ParentIndex);
+                    /*End*/
+
+                    SharedDropDownTree(oControlID);
+
+                    if ($(".jsTableChildFilterBody[data-parent-index='" + ParentIndex + "'] tr").length > 0) 
+                    {
+                        $(".jschildcommanremove[data-index='" + ParentIndex + "']").show();
+                    }
+                }
+                else {
+                    oIndex = ($(".jsTableChildFilterBody[data-parent-index='" + ParentIndex + "'] tr").length - 1);
+                    console.log(oIndex);
+                    $(".jsTableChildFilterBody[data-parent-index='" + ParentIndex + "'] tr[data-index='" + oIndex + "']").remove();
+                    if ($(".jsTableChildFilterBody[data-parent-index='" + ParentIndex + "'] tr").length == 1) {
+                        $(".jschildcommanremove[data-index='" + ParentIndex + "']").hide();
+                    }
+                }
+            }
+            catch (e) {
+                console.log("Error : AddChildMore " + e.message);
+            }
+        }
+
+        function UniqueNumber() {
+            return Math.floor((Math.random() * 1000000) + 10);
+        }
+
+        /*All Operation here start */
+        function KeywordSentence(elem, IsAdd) {
+            try {
+                var oHtml = [], oReplaceContent = '', oIndex = 0;
+                oIndex = $(".jsKeywordSentenceTableBody tr").length;
+                if (IsAdd) {
+                    oHtml.push("<tr data-index='" + oIndex + "'>");
+                    oHtml.push("<td>");
+                    oReplaceContent = $(".jsOperationKeyword").html();
+                    oReplaceContent = oReplaceContent.replace("KeywordSentenceReplacement[-1].FieldId", "KeywordSentenceReplacement[" + oIndex + "].FieldId");
+                    oReplaceContent = oReplaceContent.replace("KeywordSentenceReplacement[-1].FieldId", "KeywordSentenceReplacement[" + oIndex + "].FieldId");//for validation
+                    oReplaceContent = oReplaceContent.replace("KeywordSentenceReplacement[-1].CurrentWord", "KeywordSentenceReplacement[" + oIndex + "].CurrentWord");
+                    oReplaceContent = oReplaceContent.replace("KeywordSentenceReplacement[-1].CurrentWord", "KeywordSentenceReplacement[" + oIndex + "].CurrentWord");//for validation
+                    oReplaceContent = oReplaceContent.replace("KeywordSentenceReplacement[-1].NewWord", "KeywordSentenceReplacement[" + oIndex + "].NewWord");
+                    oReplaceContent = oReplaceContent.replace("KeywordSentenceReplacement[-1].NewWord", "KeywordSentenceReplacement[" + oIndex + "].NewWord");//for validation
+                    oReplaceContent = oReplaceContent.replace("FieldId_tree_operation_Keyword", "FieldId_tree_operation_Keyword_" + oIndex);
+                    oHtml.push(oReplaceContent);
+                    oHtml.push("</td>");
+                    oHtml.push("</tr>");
+                    $(".jsKeywordSentenceTableBody").append(oHtml.join(" "));
+
+                    var oControlID = "#FieldId_tree_operation_Keyword_" + oIndex;
+
+                    /*Set hidden filed attributes start*/
+                    $(".jsFeeddata[name='KeywordSentenceReplacement[" + oIndex + "].FieldId']").attr("data-for", "FieldId_tree_operation_Keyword_" + oIndex);
+                    /*End*/
+
+                    SharedDropDownTree(oControlID);
+                }
+                else {
+                    $(".jsKeywordSentenceTableBody tr[data-index='" + (oIndex - 1) + "']").remove();
+                }
+                oIndex = $(".jsKeywordSentenceTableBody tr").length;
+
+                if (oIndex > 1) {
+                    $(".jsKeywordSentence").show();
+                }
+                else {
+                    $(".jsKeywordSentence").hide();
+                }
+
+            }
+            catch (e) {
+                console.log("Error : KeywordSentence : " + e.message);
+            }
+        }
+
+        function RemoveSentence(elem, IsAdd) 
+        {
+            try 
+            {
+                var oHtml = [], oReplaceContent = '', oIndex = 0;
+                oIndex = $(".jsRemoveSentenceTableBody tr").length;
+                if (IsAdd) {
+                    oHtml.push("<tr data-index='" + oIndex + "'>");
+                    oHtml.push("<td>");
+                    oReplaceContent = $(".jsOperationRemoveSentence").html();
+                    oReplaceContent = oReplaceContent.replace("RemoveSentence[-1].FieldId", "RemoveSentence[" + oIndex + "].FieldId");
+                    oReplaceContent = oReplaceContent.replace("RemoveSentence[-1].FieldId", "RemoveSentence[" + oIndex + "].FieldId");//for validation
+                    oReplaceContent = oReplaceContent.replace("RemoveSentence[-1].Sentence", "RemoveSentence[" + oIndex + "].Sentence");
+                    oReplaceContent = oReplaceContent.replace("RemoveSentence[-1].Sentence", "RemoveSentence[" + oIndex + "].Sentence");//for validation
+                    oReplaceContent = oReplaceContent.replace("FieldId_tree_remove_sentence", "FieldId_tree_remove_sentence_" + oIndex);
+                    oHtml.push(oReplaceContent);
+                    oHtml.push("</td>");
+                    oHtml.push("</tr>");
+                    $(".jsRemoveSentenceTableBody").append(oHtml.join(" "));
+
+                    var oControlID = "#FieldId_tree_remove_sentence_" + oIndex;
+
+                    /*Set hidden filed attributes start*/
+                    $(".jsFeeddata[name='RemoveSentence[" + oIndex + "].FieldId']").attr("data-for", "FieldId_tree_remove_sentence_" + oIndex);
+                    /*End*/
+
+                    SharedDropDownTree(oControlID);
+                }
+                else 
+                {
+                    $(".jsRemoveSentenceTableBody tr[data-index='" + (oIndex - 1) + "']").remove();
+                }
+                oIndex = $(".jsRemoveSentenceTableBody tr").length;
+
+                if (oIndex > 1) {
+                    $(".jsRemoveSentence").show();
+                }
+                else {
+                    $(".jsRemoveSentence").hide();
+                }
+            }
+            catch (e) {
+                console.log("Error : RemoveSentence : " + e.message);
+            }
+        }
+
+        function Calculation(elem, IsAdd) {
+            try {
+                var oIndex = 0, oHtml = [], oReplaceContent = '';
+
+                oIndex = $(".jsCalculationTableBody tr").length;
+
+                if (IsAdd) {
+                    oHtml.push("<tr data-index='" + oIndex + "'>");
+                    oHtml.push("<td>");
+                    oReplaceContent = $(".jsOperationCalculation").html();
+
+                    oReplaceContent = oReplaceContent.replace("Calculation[-1].FieldId", "Calculation[" + oIndex + "].FieldId");
+                    oReplaceContent = oReplaceContent.replace("Calculation[-1].FieldId", "Calculation[" + oIndex + "].FieldId");//for validation
+                    oReplaceContent = oReplaceContent.replace("Calculation[-1].FirstFieldId", "Calculation[" + oIndex + "].FirstFieldId");
+                    oReplaceContent = oReplaceContent.replace("Calculation[-1].FirstFieldId", "Calculation[" + oIndex + "].FirstFieldId");//for validation
+                    oReplaceContent = oReplaceContent.replace("Calculation[-1].OperatorId", "Calculation[" + oIndex + "].OperatorId");
+                    oReplaceContent = oReplaceContent.replace("Calculation[-1].SecondFieldId", "Calculation[" + oIndex + "].SecondFieldId");
+                    oReplaceContent = oReplaceContent.replace("Calculation[-1].SecondFieldId", "Calculation[" + oIndex + "].SecondFieldId");//for validation
+
+                    oReplaceContent = oReplaceContent.replace("FieldId_calculation_1", "FieldId_calculation_1_" + oIndex);
+                    oReplaceContent = oReplaceContent.replace("FieldId_calculation_2", "FieldId_calculation_2_" + oIndex);
+                    oReplaceContent = oReplaceContent.replace("FieldId_calculation_3", "FieldId_calculation_3_" + oIndex);
+
+                    oHtml.push(oReplaceContent);
+
+                    oHtml.push("</td>");
+                    oHtml.push("</tr>");
+                    $(".jsCalculationTableBody").append(oHtml.join(" "));
+
+                    var oFieldId = "#FieldId_calculation_1_" + oIndex;
+                    SharedDropDownTree(oFieldId);
+                    $(".jsFeeddata[name='Calculation[" + oIndex + "].FieldId']").attr("data-for", "FieldId_calculation_1_" + oIndex);
+
+                    $(".jsCalculationOperator[name='Calculation[" + oIndex + "].OperatorId']").attr("data-for", "FieldId_calculation_1_" + oIndex);
+
+                    var oFirstFieldId = "#FieldId_calculation_2_" + oIndex;
+                    SharedDropDownTree(oFirstFieldId);
+                    $(".jsFeeddata[name='Calculation[" + oIndex + "].FirstFieldId']").attr("data-for", "FieldId_calculation_2_" + oIndex);
+
+                    var oSecondFieldId = "#FieldId_calculation_3_" + oIndex;
+                    SharedDropDownTree(oSecondFieldId);
+                    $(".jsFeeddata[name='Calculation[" + oIndex + "].SecondFieldId']").attr("data-for", "FieldId_calculation_3_" + oIndex);
+
+                }
+                else {
+                    $(".jsCalculationTableBody tr[data-index='" + (oIndex - 1) + "']").remove();
+                }
+
+                oIndex = $(".jsCalculationTableBody tr").length;
+
+                if (oIndex > 1) {
+                    $(".jsCalculation").show();
+                }
+                else {
+                    $(".jsCalculation").hide();
+                }
+            }
+            catch (e) {
+                console.log("Error : Calculation : " + e.message);
+            }
+        }
+        /*Operation end*/
+
+        function SharedDropDownTree(oControlID)
+        {            
+            try
+            {
+                $(oControlID).empty();
+                var options =
+                        {
+                            title: "Select Field",
+                            data: TreeMap,
+                            maxHeight: 150,
+                            selectChildren: true,                           
+                            IsFilter: true,
+                            IsClickToOpenChild: true,                            
+                            clickHandler: function (element)
+                            {
+                                $(oControlID).SetTitle($(element).find("a").first().text());
+                                var oElementID = $(element).closest('div').attr('id');
+
+                                $.each($($(element).GetParents().context).data(), function (key, value)
+                                {                                   
+                                    $(".jsFeeddata[data-for='" + oElementID + "']").val(value);
+                                    var oCurrentData = getJsTree(lstJson, 'id', value);
+                                    //alert(JSON.stringify(oCurrentData));
+                                    var oCurrentOperatior = $(".jsOperator[data-for='" + oElementID + "']");
+                                    if ($(oCurrentOperatior).attr('name') != undefined) {//For Filter
+                                        var name = $(oCurrentOperatior).attr('name');
+                                        name = name.replace("OperatorId", "Value");
+                                        $("input[name='" + name + "']").val('');//clear control first
+                                        var ohtml = [];                                        
+                                        if (oCurrentData[0].columndatatype == "string" && !IsDateFind(DateArray, oCurrentData[0].text.split("(")[0]))
+                                        {
+                                            for (var i = 0; i < dtForString.length; i++) {
+                                                ohtml.push("<option value='" + dtForString[i].value + "'>" + dtForString[i].text + "</option>");
+                                            }
+                                            $(oCurrentOperatior).html(ohtml.join(" "));
+
+                                            RemoveDatePicker("input[name='" + name + "']");
+                                        }
+                                        else if ((oCurrentData[0].columndatatype == "" || oCurrentData[0].columndatatype == null))
+                                        {
+                                            if (IsDateFind(DateArray, oCurrentData[0].text.split("(")[0])) {
+                                                for (var i = 0; i < dtForNumber.length; i++) {
+                                                    ohtml.push("<option value='" + dtForNumber[i].value + "'>" + dtForNumber[i].text + "</option>");
+                                                }
+                                                $(oCurrentOperatior).html(ohtml.join(" "));
+
+                                                RemoveDatePicker("input[name='" + name + "']");
+
+                                                SetDatePicker("input[name='" + name + "']");
+                                            }
+                                            else {
+                                                RemoveDatePicker("input[name='" + name + "']");
+
+                                                $(oCurrentOperatior).html($(".jsOperator[name='FilterCriteria[-1].OperatorId']").html());
+                                            }
+                                        }  
+                                        else
+                                        {
+                                            if (oCurrentData[0].columndatatype != "array" &&
+                                                oCurrentData[0].columndatatype != "object")
+                                            {
+                                                for (var i = 0; i < dtForNumber.length; i++)
+                                                {
+                                                    ohtml.push("<option value='" + dtForNumber[i].value + "'>" + dtForNumber[i].text + "</option>");
+                                                }
+                                                $(oCurrentOperatior).html(ohtml.join(" "));
+                                                if (oCurrentData[0].columndatatype == "date" || IsDateFind(DateArray, oCurrentData[0].text.split("(")[0]))
+                                                {
+                                                    RemoveDatePicker("input[name='" + name + "']");
+
+                                                    SetDatePicker("input[name='" + name + "']");
+                                                }
+                                                else {
+
+                                                    RemoveDatePicker("input[name='" + name + "']");
+                                                }
+                                            }
+                                            else
+                                            {
+                                                RemoveDatePicker("input[name='" + name + "']");
+                                                $(oCurrentOperatior).html($(".jsOperator[name='FilterCriteria[-1].OperatorId']").html());
+                                            }
+                                        }
+                                        $(oCurrentOperatior).change();
+                                    }
+                                    else //For Other Like Operation
+                                    {
+
+                                        //var oOperatiorCalculation = $(".jsCalculationOperator[data-for='" + oElementID + "']");
+                                        //if ($(oOperatiorCalculation).attr('name') != undefined) {
+                                        //    var name = $(oOperatiorCalculation).attr('name');
+                                        //    name = name.replace("FieldId", "OperatorId");
+                                        //    var ohtml = [];
+                                        //    if (oCurrentData[0].columndatatype == "string") {
+                                        //        for (var i = 0; i < dtCalculationForString.length; i++) {
+                                        //            ohtml.push("<option value='" + dtCalculationForString[i].value + "'>" + dtCalculationForString[i].text + "</option>");
+                                        //        }
+                                        //        $("select[name='" + name + "']").html(ohtml.join(" "));
+                                        //    }
+                                        //    else
+                                        //    {
+                                        //        if (oCurrentData[0].columndatatype != "array" && oCurrentData[0].columndatatype != "object")
+                                        //        {
+                                        //            for (var i = 0; i < dtCalculationForNumber.length; i++) {
+                                        //                ohtml.push("<option value='" + dtCalculationForNumber[i].value + "'>" + dtCalculationForNumber[i].text + "</option>");
+                                        //            }
+                                        //            $("select[name='" + name + "']").html(ohtml.join(" "));
+                                        //        }
+                                        //        else
+                                        //        {
+                                        //            $("select[name='" + name + "']").html($("select[name='Calculation[-1].OperatorId']").html());
+                                        //        }
+                                        //    }
+                                        //}
+
+                                        /*For Operation */
+                                        /*Value Assignment*/
+                                        var oValueAssignment = $(".jsOperationForValueValue[data-for='" + oElementID + "']");
+                                        if ($(oValueAssignment).attr('name') != undefined)
+                                        {
+                                            var name = $(oValueAssignment).attr('name');
+                                            $("input[name='" + name + "']").val('');
+                                            if (oCurrentData[0].columndatatype == "date" || IsDateFind(DateArray, oCurrentData[0].text.split("(")[0]))
+                                            {
+                                                RemoveDatePicker("input[name='" + name + "']");
+                                                
+                                                SetDatePicker("input[name='" + name + "']");
+                                            }
+                                            else
+                                            {
+                                                RemoveDatePicker("input[name='" + name + "']");
+                                            }
+
+                                            //dropdown-operation Server Class for Sample data
+                                            var FeedProviderID = '@Model.Item1.Id';
+                                            var JsonFileName = '@Model.Item1.SampleJSONFIleName';
+
+                                            if (FeedProviderID > 0)
+                                            {
+                                                var FeedMappingID = $(".jsFeeddata[data-for='" + oElementID + "']").val();
+                                                var oFinalUrl = '@Url.Action("SampleData", "FilterRules")';
+                                                oFinalUrl += "?id=" + FeedProviderID + "&&jsonFileName=" + JsonFileName + "&&FeedMappingID=" + FeedMappingID;
+                                                $(".jssampleoperationdata").load(oFinalUrl, function (response, status, xhr) {
+                                                    if (xhr.status == 401) {
+                                                        window.stop();
+                                                        $("#SessionTimeoutDialog").load('@(Url.Action("LoginWithModalPopup", "Account"))/', function (response, status, xhr) {
+                                                            $("#SessionTimeoutDialog").dialog("open");
+                                                        });
+                                                    }
+                                                    else { }
+                                                });
+                                            }
+                                        }
+                                    }
+                                });
+                            },
+                            checkHandler: function (element)
+                            {
+                                $(oControlID).SetTitle($(element).find("a").first().text());
+                                alert($(oControlID).SetTitle($(element).find("a").first().text()));
+                            },
+                            closedArrow: '<i class="fa fa-caret-right" aria-hidden="true"></i>',
+                            openedArrow: '<i class="fa fa-caret-down" aria-hidden="true"></i>',
+                            multiSelect: false,
+                        }
+                $(oControlID).DropDownTree(options);
+            }
+            catch (e) {
+                console.log("Error : SharedDropDownTree : " + e.message);
+            }
+        }
+
+        function getJsTree(obj, key, val)
+        {
+            var objects = [];
+            for (var i in obj)
+            {
+                if (!obj.hasOwnProperty(i)) continue;
+                if (typeof obj[i] == 'object')
+                {
+                    objects = objects.concat(getJsTree(obj[i], key, val));
+                }
+                else if (i == key && obj[key] == val)
+                {
+                    objects.push(obj);                    
+                }
+            }
+            return objects;
+        }
+
+        function IsDateFind(DateOfArray, value)
+        {
+            return DateOfArray.filter(function (oCurrentElem)
+            {
+                return oCurrentElem.toLowerCase() === value.toLowerCase()
+            }).length > 0;
+            //return (DateOfArray.indexOf(value) > -1)
+        }
+
+        function FullValidate() {
+            try {
+                var result = true;
+                //apply validation for filter data
+                $('.jsTableFilter > tbody > tr').each(function (index, elem) {
+                    //var oCurrentTR = $(elem).html();
+                    var oCurrentTR = $(elem);
+
+                    /*For Field */
+                    var oFieldId = $(oCurrentTR).find(".jsFieldId");
+
+                    if ($(oFieldId).val() == "" || $(oFieldId).val() == null) {
+                        result = false;
+                        $(".jsValidFieldId[data-for='" + $(oFieldId).attr('name') + "']").html('Please select.');
+                        return result;
+                    }
+                    else {
+                        $(".jsValidFieldId[data-for='" + $(oFieldId).attr('name') + "']").html('');
+                    }
+
+                    /*For Value*/                    
+                    if (!$(oCurrentTR).find(".jsValue").is(":hidden")) {
+                        var oJsValue = $(oCurrentTR).find(".jsValue");
+                        if ($.trim($("input[name='" + $(oJsValue).attr('name') + "']").val()) == "" || $.trim($("input[name='" + $(oJsValue).attr('name') + "']").val()) == null) {
+                            result = false;
+                            $(".jsValidValue[data-for='" + $(oJsValue).attr('name') + "']").html('Please enter value.');
+                            return result;
+                        }
+                        else {
+                            $(".jsValidValue[data-for='" + $(oJsValue).attr('name') + "']").html('');
+                        }
+                    }
+
+                    //For Child Data
+                    if ($(".jsTableFilterBody tr[data-index='" + index + "']").find(".jsChildRow").is(":visible"))//$(oCurrentTR).find(".jsChildRow").is(":visible")
+                    {
+                        $(oCurrentTR).find(".jsChildFieldId").each(function (oindex, elem) {
+                            if ($("input[name='" + $(elem).attr('name') + "']").val() == "" || $("input[name='" + $(elem).attr('name') + "']").val() == null) {
+                                result = false;
+                                $(".jsValidChildFieldId[data-for='" + $(elem).attr('name') + "']").html('Please select.');
+                                return result;
+                            }
+                            else {
+                                $(".jsValidChildFieldId[data-for='" + $(elem).attr('name') + "']").html('');
+                            }
+                        });
+
+                        $(oCurrentTR).find(".jsChildValue").each(function (oindex, elem) {
+                            if ($.trim($("input[name='" + $(elem).attr('name') + "']").val()) == "" || $.trim($("input[name='" + $(elem).attr('name') + "']").val()) == null) {
+                                result = false;
+                                $(".jsValidChildValue[data-for='" + $(elem).attr('name') + "']").html('Please enter value.');
+                                return result;
+                            }
+                            else {
+                                $(".jsValidChildValue[data-for='" + $(elem).attr('name') + "']").html('');
+                            }
+                        });
+                    }
+                });
+
+                //apply for operation validation
+                switch (parseInt($("#OperationTypeId:checked").val())) {
+                    case 1: //Value Assignment
+                        if ($(".jsOperationForValueFieldId").val() == "" || $(".jsOperationForValueFieldId").val() == null) {
+                            $(".jsValidOperationForValueFieldId[data-for='" + $(".jsOperationForValueFieldId").attr('name') + "']").html('Please Select.');
+                            result = false;
+                            return result;
+                        }
+                        else {
+                            $(".jsValidOperationForValueFieldId[data-for='" + $(".jsOperationForValueFieldId").attr('name') + "']").html('');
+                        }
+
+                        if ($.trim($(".jsOperationForValueValue").val()) == "" || $.trim($(".jsOperationForValueValue").val()) == null) {
+                            $(".jsValidOperationForValueValue[data-for='" + $(".jsOperationForValueValue").attr('name') + "']").html('Please enter value.');
+                            result = false;
+                            return result;
+                        }
+                        else {
+                            $(".jsValidOperationForValueValue[data-for='" + $(".jsOperationForValueValue").attr('name') + "']").html('');
+                        }
+                        break;
+                    case 2: //Field Assignment
+                        if ($(".jsOperationForFieldFieldId").val() == "" || $(".jsOperationForFieldFieldId").val() == null) {
+                            $(".jsValidOperationForFieldFieldId[data-for='" + $(".jsOperationForFieldFieldId").attr('name') + "']").html('Please select.');
+                            result = false;
+                            return result;
+                        }
+                        else {
+                            $(".jsValidOperationForFieldFieldId[data-for='" + $(".jsOperationForFieldFieldId").attr('name') + "']").html('');
+                        }
+
+                        if ($(".jsOperationForFieldValue").val() == "" || $(".jsOperationForFieldValue").val() == null) {
+                            $(".jsValidOperationForFieldValue[data-for='" + $(".jsOperationForFieldValue").attr('name') + "']").html('Please select.');
+                            result = false;
+                            return result;
+                        }
+                        else {
+                            $(".jsValidOperationForFieldValue[data-for='" + $(".jsOperationForFieldValue").attr('name') + "']").html('');
+                        }
+                        break;
+                    case 3://Keyword/Sentence Replacement
+                        $(".jsKeywordSentenceTable > tbody > tr").each(function (index, elem) {
+                            var oCurrentRow = $(elem);
+
+                            var jsKeywordSentenceReplacementFieldId = $(oCurrentRow).find(".jsKeywordSentenceReplacementFieldId"); //Select Field
+
+                            if ($(jsKeywordSentenceReplacementFieldId).val() == "" || $(jsKeywordSentenceReplacementFieldId).val() == null) {
+                                $(".jsValidKeywordSentenceReplacementFieldId[data-for='" + $(jsKeywordSentenceReplacementFieldId).attr('name') + "']").html('Please select.');
+                                result = false;
+                                return result;
+                            }
+                            else {
+                                $(".jsValidKeywordSentenceReplacementFieldId[data-for='" + $(jsKeywordSentenceReplacementFieldId).attr('name') + "']").html('');
+                            }
+
+                            var jsKeywordSentenceReplacementCurrentWord = $(oCurrentRow).find(".jsKeywordSentenceReplacementCurrentWord"); //Current Word/Sentence
+
+                            if ($.trim($(jsKeywordSentenceReplacementCurrentWord).val()) == null || $.trim($(jsKeywordSentenceReplacementCurrentWord).val()) == "") {
+                                $(".jsValidKeywordSentenceReplacementCurrentWord[data-for='" + $(jsKeywordSentenceReplacementCurrentWord).attr('name') + "']").html('Please enter value.');
+                                result = false;
+                                return result;
+                            }
+                            else {
+                                $(".jsValidKeywordSentenceReplacementCurrentWord[data-for='" + $(jsKeywordSentenceReplacementCurrentWord).attr('name') + "']").html('');
+                            }
+
+                            var jsKeywordSentenceReplacementNewWord = $(oCurrentRow).find(".jsKeywordSentenceReplacementNewWord");
+
+                            if ($.trim($(jsKeywordSentenceReplacementNewWord).val()) == "" || $.trim($(jsKeywordSentenceReplacementNewWord).val()) == null) {
+                                $(".jsValidKeywordSentenceReplacementNewWord[data-for='" + $(jsKeywordSentenceReplacementNewWord).attr('name') + "']").html('Please enter value.');
+                                result = false;
+                                return result;
+                            }
+                            else {
+                                $(".jsValidKeywordSentenceReplacementNewWord[data-for='" + $(jsKeywordSentenceReplacementNewWord).attr('name') + "']").html('');
+                            }
+                        });
+                        break;
+                    case 4://Remove Sentence
+                        $(".jsRemoveSentenceTable > tbody > tr").each(function (index, elem) {
+                            var oCurrentRow = $(elem);
+
+                            var jsRemoveSentenceFieldId = $(oCurrentRow).find(".jsRemoveSentenceFieldId"); //Select Field
+
+                            if ($(jsRemoveSentenceFieldId).val() == "" || $(jsRemoveSentenceFieldId).val() == null) {
+                                $(".jsValidRemoveSentenceFieldId[data-for='" + $(jsRemoveSentenceFieldId).attr('name') + "']").html('Please select.');
+                                result = false;
+                                return result;
+                            }
+                            else {
+                                $(".jsValidRemoveSentenceFieldId[data-for='" + $(jsRemoveSentenceFieldId).attr('name') + "']").html('');
+                            }
+
+                            var jsRemoveSentenceSentence = $(oCurrentRow).find(".jsRemoveSentenceSentence"); //  Sentence
+
+                            if ($.trim($(jsRemoveSentenceSentence).val()) == null || $.trim($(jsRemoveSentenceSentence).val()) == "") {
+                                $(".jsValidRemoveSentenceSentence[data-for='" + $(jsRemoveSentenceSentence).attr('name') + "']").html('Please enter value.');
+                                result = false;
+                                return result;
+                            }
+                            else {
+                                $(".jsValidRemoveSentenceSentence[data-for='" + $(jsRemoveSentenceSentence).attr('name') + "']").html('');
+                            }
+                        });
+                        break;
+                    case 5://Calculation
+                        $(".jsCalculationTable > tbody > tr").each(function (index, elem) {
+                            var oCurrentRow = $(elem);
+
+                            var jsCalculationFieldId = $(oCurrentRow).find(".jsCalculationFieldId");
+
+                            if ($(jsCalculationFieldId).val() == "" || $(jsCalculationFieldId).val() == null) {
+                                $(".jsValidCalculationFieldId[data-for='" + $(jsCalculationFieldId).attr('name') + "']").html('Please select.');
+                                result = false;
+                                return result;
+                            }
+                            else {
+                                $(".jsValidCalculationFieldId[data-for='" + $(jsCalculationFieldId).attr('name') + "']").html('');
+                            }
+
+                            var jsCalculationFirstFieldId = $(oCurrentRow).find(".jsCalculationFirstFieldId");
+
+                            if ($(jsCalculationFirstFieldId).val() == "" || $(jsCalculationFirstFieldId).val() == null) {
+                                $(".jsValidCalculationFirstFieldId[data-for='" + $(jsCalculationFirstFieldId).attr('name') + "']").html('Please select.');
+                                result = false;
+                                return result;
+                            }
+                            else {
+                                $(".jsValidCalculationFirstFieldId[data-for='" + $(jsCalculationFirstFieldId).attr('name') + "']").html('');
+                            }
+
+                            var jsCalculationSecondFieldId = $(oCurrentRow).find(".jsCalculationSecondFieldId");
+
+                            if ($(jsCalculationSecondFieldId).val() == "" || $(jsCalculationSecondFieldId).val() == null) {
+                                $(".jsValidCalculationSecondFieldId[data-for='" + $(jsCalculationSecondFieldId).attr('name') + "']").html('Please select.');
+                                result = false;
+                                return result;
+                            }
+                            else {
+                                $(".jsValidCalculationSecondFieldId[data-for='" + $(jsCalculationSecondFieldId).attr('name') + "']").html('');
+                            }
+                        });
+                        break;
+
+                    default:
+
+                }
+                return result;
+            }
+            catch (e) {
+                console.log("Error : FullValidate : " + e.message);
+            }
+        }
+
+        function Operator(elem) {
+            var oName = $(elem).attr('name');
+            var oID = $(elem).val();
+            oName = oName.replace("OperatorId", "Value");
+
+            if (oID == 8) {
+                $("input[name='" + oName + "']").hide();
+                $("input[name='" + oName + "']").val('');
+            }
+            else 
+            {
+                $("input[name='" + oName + "']").show();
+                $("input[name='" + oName + "']").val('');
+            }
+        }
+    
+        function SetDatePicker(oControl)
+        {
+            try
+            {                
+                $(oControl).datetimepicker({
+                    sideBySide: true,
+                    useCurrent: false,
+                    format: 'YYYY-MM-DD hh:mm A',        
+                    widgetPositioning: {
+                        vertical: 'auto',
+                        horizontal: 'auto'
+                    }
+                });                
+            }
+            catch (e)
+            {
+                console.log("Error : SetDatePicker : " + e.message);
+            }
+        }
+
+        function RemoveDatePicker(oControl)
+        {           
+            try
+            {               
+                //var datetimepicker = $(oControl).datetimepicker();
+                //datetimepicker.destroy();
+                //$(oControl).data('datetimepicker').remove();               
+                $(oControl).datetimepicker('destroy');                
+            }
+            catch (e)
+            {
+                //console.log("Error : RemoveDatePicker : " + e.message);
+            }
+        }
+    
+        $("#frmRuleCreate").on("click", ".jsSharedButton",
+            function ()
+            {                
+                try
+                {                    
+                    var $oCurrent = $(this).parent();
+                    var $oInput = $oCurrent.find("input");
+                    $oInput.val('');                    
+                    $oInput.trigger('oninput');                   
+                }
+                catch (e)
+                {
+                    console.log("Error : " + e.message);
+                }
+        });
+      
+    </script>
+
+    <script type="text/javascript">
+        $('#SessionTimeoutDialog').dialog({
+            autoOpen: false,
+            width: 410,
+            left: 465,
+            resizable: false,
+            title: 'Login',
+            modal: true,
+            open: function (event, ui) {
+                hideLoader();
+                changeDialogPosition();
+
+                $('#frmLoginPopup').validate(
+                    {
+                        rules: {
+                            Email: {
+                                required: true
+                            },
+                            Password: {
+                                required: true
+                            }
+                        },
+                        messages: {
+                            Email: {
+                                required: "This field is required."
+                            },
+                            Password: {
+                                required: "This field is required."
+                            }
+                        }
+                    });
+            }
+        });
+        function changeDialogPosition() {
+            $('.modal').dialog("option", "position", { my: "center top", at: "center top+50", of: window });
+        }
+    </script>
+}

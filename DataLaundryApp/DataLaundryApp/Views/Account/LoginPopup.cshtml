@@ -1,0 +1,60 @@
+﻿@model DataLaundryApp.ViewModels.vmLogin
+@*@using (Html.BeginForm(new { @id = "frmLoginPopup" }))*@
+@using (Html.BeginForm("", "", FormMethod.Post, new { @class = "m-t", role = "form", @id = "frmLoginPopup" }))
+{
+    <h4 style="color:#cc5965;font-weight: 500;text-align: center;">Session expired. Please login again.</h4>
+
+    <div class="form-group">
+        @Html.TextBoxFor(x => x.Email, new { type = "email", @class = "form-control", placeholder = "user@email.com" })
+        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = "**********" })
+        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+    </div>
+
+    <div>
+        <input type="button" class="btn btn-primary block full-width m-b" value="LOGIN" id="btnLogin"/>
+    </div>        
+}
+
+<script>
+    $(function () {
+        $("#btnLogin").click(function () {
+            if ($("#frmLoginPopup").valid()) {
+                var input = {
+                    Email: $("#Email").val(),
+                    Password: $("#Password").val()
+                }
+                $.ajax({
+                    url: '/Account/LoginWithModalPopup',
+                    //data:{Email: $("#Email").val(),Password: $("#Password").val()},
+                    //data: JSON.stringify({ 'model': input }),
+                    data: JSON.stringify(input),
+                    //data:$("#frmLoginPopup").serialize(),
+                    //dataType: 'json',
+                    accept:'application/json',
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, textStatus, jQxhr) {
+                        if (data.success == true) {
+                            //alert("login successful");
+                            console.log(data.message);
+                            $('#SessionTimeoutDialog').dialog("close");
+                        }
+                        else {
+                            toastr.error(data.message);
+                            $('#SessionTimeoutDialog').dialog("close");
+                        }
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        toastr.error("Something went wrong. Please try again soon.");
+                    }
+                });
+            }
+            else
+                return false;
+        })
+    })    
+</script>

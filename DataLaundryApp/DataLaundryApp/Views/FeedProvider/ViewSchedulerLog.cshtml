@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Scheduler Log";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">                
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12 b-r">
+                            <div class="table-responsive">
+                                <table id="SchedulerLogDT" class="table table-striped no-margins">
+                                    <thead>
+                                        <tr>
+                                            <th>Start Date <label class="timeZone"></label></th>
+                                            <th>End Date <label class="timeZone"></label></th>
+                                            <th>Affected Event(s)</th>
+                                            <th>Status</th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+   <script>
+        var oTable;        
+        $(document).ready(function () {            
+            $(".timeZone").html('(' + (moment().tz(moment.tz.guess()).format('z') || 'UTC') + ')');
+            var getStartLocalTIme = function (data, type, dataToSet) {
+                if (!data.StartDate)
+                    return "-"
+                else
+                {
+                    //for UAT
+                    //return (moment.tz.guess() ? moment.utc(data.StartDate).tz(moment.tz.guess()).format("YYYY-MM-DD hh:mm:ss A") : data.StartDate)               
+
+                    //For Local
+                    //moment.utc(new Date('2018-09-19 04:41:18 PM')).format("YYYY-MM-DD hh:mm:ss A")
+                    return (moment.tz.guess() ? moment(data.StartDate).tz(moment.tz.guess()).format("YYYY-MM-DD hh:mm:ss A") : data.StartDate)
+                }                
+            }
+            var getEndLocalTIme = function (data, type, dataToSet) {
+                if (!data.EndDate)
+                    return "-"
+                else {
+                    //for UAT
+                    //return (moment.tz.guess() ? moment.utc(data.EndDate).tz(moment.tz.guess()).format("YYYY-MM-DD hh:mm:ss A") : data.EndDate)                
+
+                    //For Local
+                    return (moment.tz.guess() ? moment(data.EndDate).tz(moment.tz.guess()).format("YYYY-MM-DD hh:mm:ss A") : data.EndDate)
+                }                
+            }
+            var getEffectedEvent = function (data, type, dataToSet) {
+                return data.AffectedEvents || "-";
+            }
+
+            oTable = $('#SchedulerLogDT').dataTable({
+                "dom": '<"top"lf>rt<"bottom"ip><"clear">',
+                "bPaginate": true,
+                "bFilter": false,
+                "autoWidth": true,
+                "bServerSide": true,
+                "bProcessing": true,
+                "pageLength": 10,
+                "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "sAjaxSource": "@Url.Action("GetSchedulerLogFeedProviders", "FeedProvider", new { feedProviderId  = ViewBag.FeedProviderId })",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.getJSON(sSource, aoData, function (json) {
+                        fnCallback(json)
+                    }).fail(function (jqxhr, textStatus, error) {
+                        if (jqxhr.status == 401)
+                            window.location.href = '/Account/Login';
+                        else
+                            toastr.error("Something went wrong. Please try again soon.");
+                    });
+                },
+                "aoColumns": [                   
+                    //{ 'mData': 'StartDate' },
+                    //{ 'mData': 'EndDate' },
+                    { 'mData': getStartLocalTIme },
+                    { 'mData': getEndLocalTIme },
+                    { 'mData': getEffectedEvent },
+                    { 'mData': 'Status', 'bSortable': false }
+                ],
+                "order": [[0, 'desc']]
+            });
+        });
+    </script>
+}

@@ -1,0 +1,119 @@
+@using DataLaundryApp.ViewModels;
+@model DataLaundryApp.ViewModels.vmHelperModel
+@{
+    string id = "";
+    @if (Model.isRoot)
+    {
+       id = Model.hasMatchesFound ? "tblMatchesFound" : "tblMatchesNotFound";
+    }
+}
+                    
+<table id="@id" class="table table-bordered table-striped @(Model.isRoot ? "feedKeyMapping" : "")">
+     <thead>
+         <tr>
+             <th width="3%"></th>
+             <th width="22%">Table Name</th>
+             <th width="25%">Column Name</th>
+             <th width="40%">Feed Key</th>
+             <th width="10%" colspan="2">Action</th>
+         </tr>
+     </thead>
+     <tbody>
+
+         @if (Model.lstIntelligentFeedMapping != null && Model.lstIntelligentFeedMapping.Count > 0)
+         {
+             foreach (var intelligentFeedMapping in Model.lstIntelligentFeedMapping)
+             {
+                 bool isFeedMappingDone = !string.IsNullOrEmpty(intelligentFeedMapping.FeedMapping.FeedKey);
+                 bool isParentFeedDeleted = intelligentFeedMapping.FeedMapping.IsDeleted;
+                 var lstChildren = Model.lstIntelligentFeedMappingAll.Where(x => x.ParentId == intelligentFeedMapping.Id).ToList();
+                 <tr data-table-name="@intelligentFeedMapping.TableName" data-column-name="@intelligentFeedMapping.ColumnName" data-feed-key="@intelligentFeedMapping.FeedMapping.FeedKey" data-feed-key-path="@intelligentFeedMapping.FeedMapping.FeedKeyPath">
+                     <td align="center" class="@(lstChildren.Count > 0 ? "details-control" : "")">
+                         <input type="hidden" class="parentId" value="@intelligentFeedMapping.ParentId" />
+                         <input type="hidden" class="feedMappingParentId" value="@intelligentFeedMapping.FeedMapping.ParentId" />
+                         <input type="hidden" class="isCustomFeedKey" value="@intelligentFeedMapping.FeedMapping.IsCustomFeedKey" />
+                         <input type="hidden" id="old_Position" class="position" value="@intelligentFeedMapping.FeedMapping.Position" />
+                         <input type="hidden" id="new_Position" class="position" value="@intelligentFeedMapping.FeedMapping.Position" />
+                     </td>
+                     <td class="tableName">@intelligentFeedMapping.TableName</td>
+                     <td class="columnName">
+                         <span>@(intelligentFeedMapping.ColumnName.IndexOf('_') > -1 ? intelligentFeedMapping.ColumnName.Substring(intelligentFeedMapping.ColumnName.LastIndexOf('_') + 1) : intelligentFeedMapping.ColumnName)</span>
+                         <input type="hidden" class="actualColumnName" value="@intelligentFeedMapping.ColumnName" />
+                     </td>
+                     <td class="feedKeyPath">
+                         <span>@intelligentFeedMapping.FeedMapping.FeedKeyPath</span>
+                         <input type="hidden" class="actualFeedKeyPath" value="@intelligentFeedMapping.FeedMapping.ActualFeedKeyPath" />
+                         <input type="hidden" class="ColumnDataType" value="@intelligentFeedMapping.FeedMapping.ColumnDataType" />
+                     </td>
+                     <td>
+                         @if (intelligentFeedMapping.FeedMapping.IsCustomFeedKey)
+                         {
+                             <a href='javascript:void(0);' class="btn btn-block btn-primary" onclick="openViewSampleFeedKeyValue(this)">View Data</a>
+                             <a href='javascript:void(0);' class="btn btn-block btn-primary" onclick="openEditCustomFeedKey(@intelligentFeedMapping.Id)">Edit Custom Feed Key</a>
+                             <a href='javascript:void(0);' class="btn btn-block btn-primary" onclick="openDeleteCustomFeedKey(@intelligentFeedMapping.Id)">Delete Custom Feed Key</a>
+                         }
+                         else
+                         {
+                             <a href='javascript:void(0);' class="btn btn-block btn-primary" onclick="openViewSampleFeedKeyValue(this)">View Data</a>
+                             if (!intelligentFeedMapping.FeedMapping.IsDeleted)
+                             {
+                                 <input type="button" class="btn btn-block btn-primary editFieldMapping" @((Model.isRoot || Model.isParentMappingDone) ? "" : "disabled" ) value="Change" />
+                             }
+                             if (!string.IsNullOrEmpty(intelligentFeedMapping.FeedMapping.FeedKey))
+                             {
+                                 <a href='javascript:void(0);' class="btn btn-block btn-primary @(intelligentFeedMapping.FeedMapping.IsDeleted ? "" : "btn-danger" )" @((Model.isRoot || Model.isParentMappingDone) ? "" : "disabled" ) onclick="activateDeactivateFeed(@intelligentFeedMapping.FeedMapping.Id,@(intelligentFeedMapping.FeedMapping.IsDeleted ? "false" : "true"))">@Html.Raw(intelligentFeedMapping.FeedMapping.IsDeleted ? "Revert" : "Delete")</a>
+                             }
+                             @*<a href='javascript:void(0);' class="btn btn-primary editFieldMapping" style="margin-left:10px;" @((Model.isRoot || Model.isParentMappingDone) ? "" : "disabled" )>Change</a>*@
+                         }
+                     </td>
+                     @if (!string.IsNullOrEmpty(intelligentFeedMapping.FeedMapping.FeedKey))
+                     {
+                         <td style="vertical-align: middle;">
+                             <a href='javascript:void(0);' class="up"><i class="fa fa-arrow-circle-o-up" style="font-size: 30px;margin-bottom:5px;"></i></a>
+                             <a href='javascript:void(0);' class="down"><i class="fa fa-arrow-circle-o-down" style="font-size: 30px;"></i></a>                                                   
+                         </td>
+                     }                                            
+                 </tr>
+                 if (lstChildren.Count > 0)
+                 {
+                     var lstChildrenFound = lstChildren.Where(x => !string.IsNullOrEmpty(x.FeedMapping.FeedKey) && x.FeedMapping.IsDeleted != true).OrderBy(x => x.FeedMapping.Position).ToList();
+                     var lstChildrenNotFound = lstChildren.Where(x => string.IsNullOrEmpty(x.FeedMapping.FeedKey) && x.FeedMapping.IsDeleted != true).ToList();
+                     var lstDeletedChildren = lstChildren.Where(x => x.FeedMapping.IsDeleted == true).ToList();
+                     <tr class="childrow" style="display:none;">
+                         <td></td>
+                         <td colspan="5">
+                             <div class="matchedFields">
+                                 <h2>Matched Fields</h2>
+                                 <div class="table-responsive">
+                                     @Html.Partial("_HelperFeedAnalysisResult.cshtml",new vmHelperModel(){hasMatchesFound=Model.hasMatchesFound,lstIntelligentFeedMappingAll=Model.lstIntelligentFeedMapping,lstIntelligentFeedMapping=lstChildrenFound,isRoot=false,isParentMappingDone=isFeedMappingDone})
+                                     @* @RenderFeedMappingTable(hasMatchesFound, lstIntelligentFeedMappingAll, lstChildrenFound, isRoot: false, isParentMappingDone: isFeedMappingDone) *@
+                                 </div>
+                             </div>
+                             <div class="nonMatchedFields">
+                                 <h2>Non-Matched Fields</h2>
+                                 <div class="table-responsive">
+                                     @*@RenderFeedMappingTable(hasMatchesFound, lstIntelligentFeedMappingAll, lstChildrenNotFound, isRoot: false, isParentMappingDone: isFeedMappingDone) *@
+                                     @Html.Partial("_HelperFeedAnalysisResult.cshtml",new vmHelperModel(){hasMatchesFound=Model.hasMatchesFound,lstIntelligentFeedMappingAll=Model.lstIntelligentFeedMapping,lstIntelligentFeedMapping=lstChildrenNotFound,isRoot=false,isParentMappingDone=isFeedMappingDone})
+                                 </div>
+                             </div>
+                             <div class="nonMatchedFields">
+                                 <h2>Deleted Fields</h2>
+                                 <div class="table-responsive">
+                                     @*@RenderFeedMappingTable(hasMatchesFound, lstIntelligentFeedMappingAll, lstDeletedChildren, isRoot: false, isParentMappingDone: !isParentFeedDeleted)*@
+                                     @Html.Partial("_HelperFeedAnalysisResult.cshtml",new vmHelperModel(){hasMatchesFound=Model.hasMatchesFound,lstIntelligentFeedMappingAll=Model.lstIntelligentFeedMapping,lstIntelligentFeedMapping=lstDeletedChildren,isRoot=false,isParentMappingDone=!isParentFeedDeleted})
+                                 </div>
+                             </div>
+                         </td>
+                     </tr>
+                 }
+                 }
+             }
+         <tr class="trNotFound" style="display: @(Model.lstIntelligentFeedMapping.Count > 0 ? "none": "table-row")">
+                 <td colspan="5" width="100%">
+                     <div class="alert alert-danger">
+                         No data found
+                     </div>
+                 </td>
+             </tr>
+         </tbody>
+</table>

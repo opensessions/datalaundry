@@ -1,0 +1,12 @@
+﻿
+@if (TempData["ResponseMsg"] != null)
+{
+    if (TempData["ResponseStatus"] != null)
+    {
+        bool responseStatus = Convert.ToBoolean(TempData["ResponseStatus"]);
+
+        <div class="alert @(responseStatus ? "alert-success": "alert-danger")">
+            @TempData["ResponseMsg"]
+        </div>
+    }    
+}

@@ -1,0 +1,129 @@
+﻿@model DataLaundryApp.ViewModels.vmCustomFeedMapping
+@{
+    ViewBag.Title = "Custom Feed Key Mapping";
+
+    string jsonTree = "";
+    if (ViewBag.JsonTree != null)
+    {
+        jsonTree = ViewBag.JsonTree;
+    }
+
+    string formId = Model.Id <= 0 ? "frmCreateCustomFeedKeyMapping" : "frmEditCustomFeedKeyMapping";
+}
+
+<style>
+    #PossibleMatchesDummy {
+        visibility: hidden !Important;
+        height: 1px;
+        width: 1px;
+    }
+
+    .jstree-default .jstree-disabled {
+        color: #aaa;
+    }
+</style>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+else
+{
+    <form id="@formId">
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.FeedProviderId)
+        @Html.HiddenFor(m => m.FeedKeyPath)
+
+        <div class="form-group">
+            <label class="control-label" title="Feed key name can't be updated, To update this. first delete the existing one and then add.">Custom Key Name</label> 
+            @if (Model.Id > 0)
+            {
+                @Html.TextBoxFor(m => m.CustomKeyName, new { @class = "form-control", @autocomplete = "off", @maxlength = "20", ondragover = "return false", onpaste = "return false", disabled = "disabled" })
+            }
+            else
+            {
+                @Html.TextBoxFor(m => m.CustomKeyName, new { @class = "form-control", @autocomplete = "off", @maxlength = "20", ondragover = "return false", onpaste = "return false", })
+            }            
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Select Feed Key</label>
+            <div id="LeafFeedKeyTree" class="form-group" style="max-height:200px; overflow-y:auto;"></div>
+            <i>Note: You can only select key with bottom most level (i.e. leaf node) in the tree view </i>
+        </div>
+
+    </form>
+
+    <script>
+        $(function () {
+            var jsonTree = '@Html.Raw(jsonTree)';
+            var jsonTreeObject = JSON.parse(jsonTree);
+
+            //$('#PossibleMatches').tagsinput({
+            //    tagClass: 'label label-primary'
+            //});
+            
+            $.jstree.destroy();
+
+            @*if ($.jstree.reference($("#@formId #LeafFeedKeyTree")) != null) {
+                $("#@formId #LeafFeedKeyTree").jstree(true).destroy(true);
+            }*@
+
+            $('#@formId #LeafFeedKeyTree').jstree({
+                'core': {
+                    'data': jsonTreeObject
+                }
+            });
+
+            $('#@formId #CustomKeyName').keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z_]+$");
+                var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+
+                if (regex.test(str)) {
+                    return true;
+                }
+                else {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            $("#@formId #LeafFeedKeyTree").bind("ready.jstree", function (evt, data) {
+                changeDialogPosition();
+            });
+
+            $("#@formId #LeafFeedKeyTree").bind("select_node.jstree", function (evt, data) {
+                $("#@formId #FeedKeyPath").val(data.node.id);
+
+                //validateColumnName();
+            });
+
+            //$("#btnDeselectParentFeedKey").click(function () {
+            //    $('#LeafFeedKeyTree').jstree("deselect_all");
+            //    $("#ParentId").val("");
+            //    validateColumnName();
+            //});
+
+
+            //$('#PossibleMatches').on('itemAdded', function (event) {
+            //    $("#frmCreateEditCustomFeeKeyMapping").valid()
+            //});
+
+            //$('#PossibleMatches').on('itemRemoved', function (event) {
+            //    $("#frmCreateEditCustomFeeKeyMapping").valid()
+            //});
+        });
+
+        function validateColumnName() {
+            //remove previous remote data value to allow manual trigger remote call
+            $("#@formId #CustomKeyName").removeData("previousValue");
+            //manually trigger remote call
+            $("#@formId").data('validator').element('#CustomKeyName');
+        }
+
+    </script>
+}

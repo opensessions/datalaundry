@@ -1,0 +1,318 @@
+﻿@model Tuple<DataLaundryDAL.DTO.FeedProvider, int>
+@{
+    ViewBag.Title = "Filter Rule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    @if (Model.Item1 != null && Model.Item1.Id > 0)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+
+                @Html.Partial("_Details", Model.Item1)
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <div class="row">
+                            <div class="col-sm-12 b-r pull-right">
+                                <button id="btnAddNew" class="btn btn-primary" onclick="OpenAddRule();"><i class="fa fa-plus"></i> Add Rule</button>&nbsp;&nbsp;
+                                <button id="btnAddNew" class="btn btn-primary" onclick="AutoFlush(this);"><i class="fa fa-recycle"></i> Flush Data</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12 b-r">
+                                <div class="table-responsive">
+                                    <table id="FilterRulesDT" class="table table-striped no-margins">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>IsEnable</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+                Filter Rule not found
+            </div>
+    }
+    <div id="SessionTimeoutDialog" class="modal" style="overflow: hidden;">
+    </div>
+</div>
+@section scripts{
+    <script>
+        var oTable;
+        $(document).ready(function () {
+            $(".navbar-minimalize").trigger("click");
+            oTable = $('#FilterRulesDT').dataTable({
+                "dom": '<"top"lf>rt<"bottom"ip><"clear">',
+                "bPaginate": true,
+                "bFilter": true,
+                "autoWidth": true,
+                "bServerSide": true,
+                "bProcessing": true,
+                "pageLength": 10,
+                "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "sAjaxSource": "@Url.Action("GetAllRuleByFeedID", "FilterRules",new { FeedProviderId = Model.Item2})",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.getJSON(sSource, aoData, function (json) {
+                        fnCallback(json)
+                    }).fail(function (jqxhr, textStatus, error) {
+                        if (jqxhr.status == 401)
+                            window.location.href = '/Account/Login';
+                        else
+                            toastr.error("Something went wrong. Please try again soon.");
+                    });
+                },
+                "aoColumns": [
+                    { 'mData': 'RuleName' },
+                    {
+                        "mData": function (source) {
+                            return source;
+                        },
+                        "mRender": function (resObj) {
+                            var html = '';
+                            if (resObj.IsEnable) {
+                                html = '<input type="checkbox" onclick="UpdateRule(this,' + resObj.Id + ',' + resObj.IsEnable + ')" checked="" title="Click to disable rule.">';
+                            }
+                            else {
+                                html = '<input type="checkbox" onclick="UpdateRule(this,' + resObj.Id + ',' + resObj.IsEnable + ')" title="Click to enable rule.">';
+                            }
+                            return html;
+                        },
+                    },
+                    {
+                        "mData": function (source) {
+                            return source;
+                        },
+                        "mRender": function (resObj) {
+                            var html = '';
+                            html += '<a href="javascript:void(0);" class="btn btn-block btn-danger btn-rounded" onclick="Delete(' + resObj.Id + ')">Delete</a>';
+                            // html += '<a href="javascript:void(0);" class="btn btn-block btn-primary btn-rounded" onclick="Edit(' + resObj.Id + ')">Edit</a>';
+                            html += '<a href="javascript:void(0);" class="btn btn-block btn-success btn-rounded" onclick="Details(' + resObj.Id + ')">Details</a>';
+                            return html;
+                        },
+                        "bSortable": false,
+                        'searchable': false
+                    }
+                ]
+            });
+
+            $('#SessionTimeoutDialog').dialog({
+                autoOpen: false,
+                width: 410,
+                left: 465,
+                resizable: false,
+                title: 'Login',
+                modal: true,
+                open: function (event, ui) {
+                    changeDialogPosition();
+                    $('#frmLoginPopup').validate({
+                        rules: {
+                            Email: {
+                                required: true
+                            },
+                            Password: {
+                                required: true
+                            }
+                        },
+                        messages: {
+                            Email: {
+                                required: "This field is required."
+                            },
+                            Password: {
+                                required: "This field is required."
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        function OpenAddRule() {
+            location.href = '@Url.Action("Create","FilterRules",new { id=Model.Item2})';
+        }
+
+        function Delete(id) {
+            swal({
+                title: 'Are you sure to delete this rule?',
+                text: "You will not be able to recover",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then(function () {
+                $.ajax({
+                    url: '@Url.Action("Delete", "FilterRules")',
+                    data: { "id": id },
+                    type: 'POST',
+                    success: function (data, textStatus, jQxhr) {
+                        hideLoader();
+                        if (data.status == true)
+                            oTable.fnDraw();
+                        else
+                            toastr.error(data.message);
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        hideLoader();
+                        if (jqXhr.status == 401) {
+                            $("#SessionTimeoutDialog").load('@(Url.Action("LoginWithModalPopup", "Account"))/', function (response, status, xhr) {
+                                $("#SessionTimeoutDialog").dialog("open");
+                            });
+                        }
+                        else
+                            toastr.error("Something went wrong. Please try again soon.");
+                    }
+                });
+            });
+        }
+
+        function changeDialogPosition() {
+            $('.modal').dialog("option", "position", { my: "center top", at: "center top+50", of: window });
+        }
+
+        function Details(RuleId) {
+            window.location.href = "@Url.Action("GetRuleDetailByID", "FilterRules")/" + RuleId;
+        }
+        function UpdateRule(elem, id, IsEnable) {
+            try {
+                swal({
+                    title: 'Are you sure to ' + (IsEnable ? 'disable' : 'enable') + ' this rule?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                }).then(function () {
+                    $.ajax({
+                        url: '@Url.Action("Update", "FilterRules")',
+                        data: { "id": id, IsEnable: (IsEnable ? false : true) },
+                        type: 'POST',
+                        success: function (data, textStatus, jQxhr) {
+                            hideLoader();
+                            if (data.status == true)
+                                oTable.fnDraw();
+                            else
+                                toastr.error(data.message);
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            hideLoader();
+                            if (jqXhr.status == 401) {
+                                $("#SessionTimeoutDialog").load('@(Url.Action("LoginWithModalPopup", "Account"))/', function (response, status, xhr) {
+                                    $("#SessionTimeoutDialog").dialog("open");
+                                });
+                            }
+                            else
+                                toastr.error("Something went wrong. Please try again soon.");
+                        }
+                    });
+                },
+                function (dismiss)
+                {
+                    if ($(elem).is(":checked")) {
+                        $(elem).prop("checked", false);
+                    }
+                    else {
+                        $(elem).prop("checked", true);
+                    }
+                });
+            }
+            catch (e) {
+                console.log("Error : UpdateRule : " + e.message);
+            }
+        }
+
+        function AutoFlush(elem)
+        {
+            try
+            {
+                swal({
+                    title: 'Flush data?',
+                    text: 'Are you sure to all rule applied in existing  data?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                }).then(function () {
+                    $.ajax({
+                        url: '@Url.Action("AutoFlush", "FilterRules")',
+                        data: { "FeedProviderID": @Model.Item2},
+                        type: 'POST',
+                        success: function (data, textStatus, jQxhr)
+                        {         
+                            debugger;
+                            if(data.Item1)
+                            {
+                                swal("Flush data", "Changed data successfully.", "success");
+                            }
+                            else if(data.Item1 === false && data.Item2 === 1)
+                            {
+                                swal({
+                                    title: "Flush data",
+                                    text: "Please create rule first or Enable existing rule.",
+                                    type: "warning",
+                                    showCancelButton: false,
+                                    confirmButtonClass: "btn-danger",
+                                    confirmButtonText: "OK",
+                                });
+                            }
+                            else
+                            {   
+                                swal({
+                                    title: "Flush data",
+                                    text: "Something went wrong.",
+                                    type: "warning",
+                                    showCancelButton: false,
+                                    confirmButtonClass: "btn-danger",
+                                    confirmButtonText: "OK",
+                                });
+                            }
+                            hideLoader();
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            hideLoader();
+                            if (jqXhr.status == 401) {
+                                $("#SessionTimeoutDialog").load('@(Url.Action("LoginWithModalPopup", "Account"))/', function (response, status, xhr) {
+                                    $("#SessionTimeoutDialog").dialog("open");
+                                });
+                            }
+                            else
+                                toastr.error("Something went wrong. Please try again soon.");
+                        }
+                    });
+                },
+                function (dismiss) {
+                });
+            }
+            catch (e)
+            {
+                console.log("Error : AutoFlush " + e.message);
+            }
+        }
+    </script>
+}

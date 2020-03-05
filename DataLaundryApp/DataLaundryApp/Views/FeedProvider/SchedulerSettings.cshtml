@@ -1,0 +1,543 @@
+﻿@model DataLaundryApp.ViewModels.vmSchedulerSettings
+@{
+    ViewBag.Title = "Scheduler Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@ViewBag.Title</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","FeedProvider")">Feed Providers</a>
+            </li>
+            <li class="active">
+                <strong>@ViewBag.Title</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    else
+    {
+        if (Model != null && Model?.FeedProvider?.Id > 0)
+        {
+            @Html.Partial("_Details", Model.FeedProvider)
+
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Settings</h5>
+                    <div class="clearfix">
+                        <a href='@Url.Action("ViewSchedulerLog", "FeedProvider", new { id = Model.FeedProvider.Id})' class="btn btn-primary pull-right"><i class="fa fa-gear"></i> View Log</a>                        
+                    </div>
+                </div>
+                <div class="ibox-content" id="jsSelection">
+                    @using (Html.BeginForm("EditSchedulerSettings", "FeedProvider", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        
+                        @Html.Hidden("SchedulerSettingId", Model.Id)
+                        @Html.HiddenFor(m => m.FeedProvider.Id)
+                        @Html.HiddenFor(m => m.liStartDateTime)
+                        @Html.HiddenFor(m => m.liExpiryDateTime)
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Start Date</label>
+                                <div class="form-group input-group date" id="datetimepickerStart">
+                                    @Html.TextBoxFor(model => model.strStartDateTime, new { @class="form-control", @maxlength = "255", @autocomplete = "off" })
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+
+                                <div style="margin-top: -15px;">
+                                    @Html.ValidationMessageFor(model => model.strStartDateTime, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Expiry Date</label>&nbsp;(optional)
+                                <div class="form-group input-group date" id="datetimepickerEnd">
+                                    @Html.TextBoxFor(model => model.strExpiryDateTime, new { @class = "form-control", @maxlength = "255", @autocomplete = "off" })
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+
+                                <div style="margin-top: -15px;">
+                                    @Html.ValidationMessageFor(model => model.strExpiryDateTime, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                @if (ViewBag.lstSchedulerFrequency != null)
+                                {
+                                    <div class="radio">
+                                        @for (int i = 0; i < ViewBag.lstSchedulerFrequency.Count; i++)
+                                        {
+                                            <div class="form-group">
+                                                <label>
+                                                    @Html.RadioButtonFor(m => m.SchedulerFrequencyId, (int)ViewBag.lstSchedulerFrequency[i].Id,new{@class="jsRadioButtonSchedulerFrequency",@data_indexid=(int)ViewBag.lstSchedulerFrequency[i].Id})
+                                                    @(ViewBag.lstSchedulerFrequency[i].Name)
+                                                </label>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+
+                            </div>
+
+                            <div class="col-md-9">
+                                <div id="dvSchedulerFrequency_Hourly" style="display: @(Model.SchedulerFrequencyId == 2 ? "block": "none")">
+                                    <div class="form-group">
+                                        <div>
+                                            Recur Every: @Html.TextBoxFor(m => m.RecurranceIntervalHours, new { @type = "number", @class = "form-control inline-textbox jsNumeric", @min = "1" }) hours
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.RecurranceIntervalHours, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div id="dvSchedulerFrequency_Daily" style="display: @(Model.SchedulerFrequencyId == 3 ? "block": "none")">
+                                    <div class="form-group">
+                                        <div>
+                                            Recur Every: @Html.TextBoxFor(m => m.RecurranceIntervalDays, new { @type="number", @class = "form-control inline-textbox jsNumeric", @min="1" }) days
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.RecurranceIntervalDays, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div id="dvSchedulerFrequency_Weekly" style="display: @(Model.SchedulerFrequencyId == 4 ? "block": "none")">
+                                    <div class="form-group">
+                                        <div>
+                                            Recur Every: @Html.TextBoxFor(m => m.RecurranceIntervalWeeks, new { @type = "number", @class = "form-control inline-textbox jsNumeric", @min = "1" }) weeks on:
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.RecurranceIntervalWeeks, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-group">
+                                        <table class="table table-nonbordered">
+                                            @for (int i = 0; i < Model.RecurranceDaysInWeekSelectList.Count; i++)
+                                            {
+                                                if (i == 0 || i % 4 == 0)
+                                                {
+                                                    @: <tr>
+                                                }
+
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            @Html.CheckBoxFor(m => Model.RecurranceDaysInWeekSelectList[i].IsSelected)
+                                                            @Html.DisplayFor(m => Model.RecurranceDaysInWeekSelectList[i].Name)
+                                                        </label>
+                                                    </div>
+                                                </td>
+
+                                                if ((i + 1) % 4 == 0 || i == Model.RecurranceDaysInWeekSelectList.Count - 1)
+                                                {
+                                                    @: </tr>
+                                                }
+                                            }
+                                        </table>
+                                        <div>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="dvSchedulerFrequency_Monthly" style="display: @(Model.SchedulerFrequencyId == 5 ? "block": "none")">
+                                    <div class="form-group">
+                                        <label>Months:</label>
+                                        @Html.ListBoxFor(m => m.SelectedMonths, Model.RecurranceMonthsSelectList, new { @class = "form-control listBox" })
+
+                                        <div>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            @Html.RadioButton("MonthlyOptions", "Days", Model.IsDatesSelectedInMonth)
+                                            Days:
+                                        </label>
+
+                                        <span style="display: @(Model.IsDatesSelectedInMonth ? "inline": "none")">
+                                            @Html.ListBoxFor(m => m.SelectedDatesInMonth, Model.RecurranceDatesInMonthsSelectList, new { @class = "form-control listBox" })
+                                        </span>
+
+                                        <div>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            @Html.RadioButton("MonthlyOptions", "On", !Model.IsDatesSelectedInMonth)
+                                            On:
+                                        </label>
+
+                                        <span style="display: @(!Model.IsDatesSelectedInMonth ? "inline": "none")">
+                                            @Html.ListBoxFor(m => m.SelectedWeekNos, Model.RecurranceWeekNosSelectList, new { @class = "form-control listBox" })
+                                            @Html.ListBoxFor(m => m.SelectedDaysInWeekForMonth, Model.RecurranceDaysInWeekForMonthSelectList, new { @class = "form-control listBox" })
+                                        </span>
+
+                                        <div>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            @if(Model.Id > 0)
+                                            {
+                                                @Html.CheckBoxFor(m => Model.IsEnabled)
+                                            }
+                                            else
+                                            {
+                                                @Html.CheckBox("IsEnabled",true)
+                                            }                                            
+                                            Enabled
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <input id="btnSave" type="button" class="btn btn-lg btn-primary pull-right" value="Save" />
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger">
+                Scheduler Settings not found
+            </div>
+        }
+    }
+
+    <div id="SessionTimeoutDialog" class="modal" style="overflow: hidden;">
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function()
+        {           
+            $(".jsRadioButtonSchedulerFrequency[data-indexid='"+@(Model.SchedulerFrequencyId)+"']").prop("checked",true);
+        });
+        $(function () {
+            var id = $("#SchedulerSettingId").val();
+            var strStartDateTime = '';
+            var strEndDateTime = '';
+            var startDate = null;
+            var endDate = null;
+
+            if (id != null && id != '' && id != '0') {
+                strStartDateTime = moment.unix($("#liStartDateTime").val()).format('DD/MM/YYYY hh:mm A');
+                startDate = new Date(moment.unix($("#liStartDateTime").val()));
+            }
+
+            if ($("#liExpiryDateTime").val() != '') {
+                strEndDateTime = moment.unix($("#liExpiryDateTime").val()).format('DD/MM/YYYY hh:mm A');
+                endDate = new Date(moment.unix($("#liExpiryDateTime").val()));
+            }
+
+            $("#strStartDateTime").val(strStartDateTime);
+            $("#strExpiryDateTime").val(strEndDateTime);
+
+            $('.listBox').multiselect({
+                includeSelectAllOption: true,
+                maxHeight: 200,
+                dropUp: true
+            });
+
+            $('#datetimepickerStart').datetimepicker({
+                sideBySide: true,
+                format: 'DD/MM/YYYY hh:mm A',
+                useCurrent: false,
+                //minDate: (startDate || new Date()),
+                widgetPositioning: {
+                    vertical: 'bottom',
+                    horizontal: 'auto'
+                }
+            });
+
+            $('#datetimepickerEnd').datetimepicker({
+                sideBySide: true,
+                format: 'DD/MM/YYYY hh:mm A',
+                useCurrent: false,
+                //minDate: new Date(),
+                widgetPositioning: {
+                    vertical: 'bottom',
+                    horizontal: 'auto'
+                }
+            });
+
+            if (startDate)
+                $('#datetimepickerEnd').data("DateTimePicker").minDate(startDate);
+
+            if (endDate)
+                $('#datetimepickerStart').data("DateTimePicker").maxDate(endDate);            
+
+            $("#datetimepickerStart").on("dp.change", function (e) {
+                $('#datetimepickerEnd').data("DateTimePicker").minDate(e.date);
+            });
+
+            $("#datetimepickerEnd").on("dp.change", function (e) {
+                $('#datetimepickerStart').data("DateTimePicker").maxDate(e.date);
+            });
+
+            $("input[name=MonthlyOptions").change(function () {
+                $("input[name=MonthlyOptions").parent().next("span").hide();
+                $(this).parent().next("span").show();
+            });
+
+            $("input[name='SchedulerFrequencyId']").click(function () {               
+                var value = parseInt($(this).val());
+                var str = '';
+
+                if (value == 2)
+                    str = 'Hourly';
+                else if (value == 3)
+                    str = 'Daily';
+                else if (value == 4)
+                    str = 'Weekly';
+                else if (value == 5)
+                    str = 'Monthly';
+
+                $("div[id^='dvSchedulerFrequency'").hide();
+                if (str != '')
+                    $("#dvSchedulerFrequency_" + str).show();
+            });
+
+            $("#btnSave").click(function () {                
+                var isValid = true;
+                var data = {};
+                
+                var id = $("#SchedulerSettingId").val();
+                var feedProviderId = $("#FeedProvider_Id").val();
+                var strStartDateTime = $("#strStartDateTime").val();
+                var strExpiryDate = $("#strExpiryDateTime").val();
+                var schedulerFrequencyId = parseInt($("input[name='SchedulerFrequencyId']:checked").val());
+                var isEnabled = $("#IsEnabled").prop('checked');
+                var recurranceIntervalHours = $("#RecurranceIntervalHours").val();
+                var recurranceIntervalDays = $("#RecurranceIntervalDays").val();
+                var recurranceIntervalWeeks = $("#RecurranceIntervalWeeks").val();
+                var selectedRecurranceDaysInWeek = $('table input[id^=RecurranceDaysInWeekSelectList]:checked').length;
+                var monthlyOptions = $("input[name='MonthlyOptions']:checked").val()
+                var selectedDaysInWeek = [];
+                var selectedMonths = $("#SelectedMonths").val();
+                var selectedDatesInMonth = $("#SelectedDatesInMonth").val();
+                var selectedWeekNos = $("#SelectedWeekNos").val();
+                var selectedDaysInWeekForMonth = $("#SelectedDaysInWeekForMonth").val();
+
+                clearErrorMessages();
+
+                if (strStartDateTime == '') {
+                    isValid = false;
+                    $("#strStartDateTime").closest('.form-group').next().find('.text-danger').text("Please select start date");
+                }
+                else {
+                    var startDate = new Date(ChangeDateFormat(strStartDateTime, '', 'DD/MMM/YYYY hh:mm A'))
+                    $("#liStartDateTime").val(moment(startDate).unix());
+
+                    data.liStartDateTime = moment(startDate).unix();
+                }
+                
+                if (schedulerFrequencyId == '')
+                    isValid = false;
+                else
+                    data.SchedulerFrequencyId = schedulerFrequencyId;
+
+                if (strExpiryDate != '') {
+                    var endDate = new Date(ChangeDateFormat(strExpiryDate, '', 'DD/MMM/YYYY hh:mm A'));
+                    $("#liExpiryDateTime").val(moment(endDate).unix());
+                    data.liExpiryDateTime = moment(endDate).unix();
+                }
+                
+                if (schedulerFrequencyId == 2) {
+                    //hourly
+                    if (recurranceIntervalHours == '') {
+                        isValid = false;
+                        $("#RecurranceIntervalHours").closest('.form-group').find('.text-danger').text("This field is required");
+                    }
+
+                    if (isValid)
+                        data.RecurranceIntervalHours = recurranceIntervalHours;
+                }
+                if (schedulerFrequencyId == 3) {
+                    //daily
+                    if (recurranceIntervalDays == '') {
+                        isValid = false;
+                        $("#RecurranceIntervalDays").closest('.form-group').find('.text-danger').text("This field is required");
+                    }
+
+                    if (isValid)
+                        data.RecurranceIntervalDays = recurranceIntervalDays;
+                }
+                else if (schedulerFrequencyId == 4) {
+                    //weekly
+
+                    if (recurranceIntervalWeeks == '') {
+                        isValid = false;
+                        $("#RecurranceIntervalWeeks").closest('.form-group').find('.text-danger').text("This field is required");
+                    }
+
+                    if (selectedRecurranceDaysInWeek == 0) {
+                        isValid = false;
+                        $("input[name^='RecurranceDaysInWeekSelectList'").closest('.form-group').find('.text-danger').text("Please select at least one day");
+                    }
+                    
+                    if (isValid) {
+                        $('table input[id^=RecurranceDaysInWeekSelectList]:checked').each(function () {
+                            selectedDaysInWeek.push($.trim($(this).parent().text()));
+                        });
+
+                        data.RecurranceIntervalWeeks = recurranceIntervalWeeks;
+                        data.SelectedDaysInWeek = selectedDaysInWeek;
+                    }
+                }
+                else if (schedulerFrequencyId == 5) {
+                    //monthly
+                    
+                    if (selectedMonths == null || selectedMonths.length == 0) {
+                        isValid = false;
+                        $("#SelectedMonths").closest('.form-group').find('.text-danger').text("Please select at least one month");
+                    }
+
+                    if (isValid)
+                        data.SelectedMonths = selectedMonths;
+
+                    if (monthlyOptions.toLowerCase() == 'days') {
+                        if (selectedDatesInMonth == null || selectedDatesInMonth.length == 0) {
+                            isValid = false;
+                            $("#SelectedDatesInMonth").closest('.form-group').find('.text-danger').text("Please select at least one date");
+                        }
+
+                        if (isValid)
+                            data.SelectedDatesInMonth = selectedDatesInMonth;
+                    }
+                    else if (monthlyOptions.toLowerCase() == 'on') {
+                        if (selectedWeekNos == null || selectedWeekNos.length == 0 || selectedDaysInWeekForMonth == null || selectedDaysInWeekForMonth.length == 0) {
+                            isValid = false;
+
+                            if (selectedWeekNos == null || selectedWeekNos.length == 0)
+                                $("#SelectedWeekNos").closest('.form-group').find('.text-danger').text("Please select at least one week number and one day in the week");
+
+                            if (selectedDaysInWeekForMonth == null || selectedDaysInWeekForMonth.length == 0)
+                                $("#SelectedDaysInWeekForMonth").closest('.form-group').find('.text-danger').text("Please select at least one week number and one day in the week");
+                        }
+
+                        if (isValid) {
+                            data.SelectedWeekNos = selectedWeekNos;
+                            data.SelectedDaysInWeekForMonth = selectedDaysInWeekForMonth;
+                        }
+                        
+                    }
+                }
+
+                data.IsEnabled = isEnabled;
+
+                if (!isValid)
+                    return;
+                
+                data.Id = id;
+                data.FeedProviderId = feedProviderId;
+
+                var url = '@Url.Action("EditSchedulerSettings", "FeedProvider")';
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: { "model": data },
+                    success: function (data) {
+                        if (data.status == true) {
+                            location.reload(true);
+                        }
+                        else {
+                            toastr.error(data.message);
+                        }
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        if (jqXhr.status == 401) {
+                            $("#SessionTimeoutDialog").load('@(Url.Action("LoginWithModalPopup", "Account"))/', function (response, status, xhr) {
+                                $("#SessionTimeoutDialog").dialog("open");
+                            });
+                        }
+                        else
+                            toastr.error("Something went wrong. Please try again soon.");
+                    }
+                    //error: function (reponse) {
+                    //    toastr.error("Something went wrong. Please try again soon.");
+                    //}
+                });
+            });
+
+            $('#SessionTimeoutDialog').dialog({
+                autoOpen: false,
+                width: 410,
+                left: 465,
+                resizable: false,
+                title: 'Login',
+                modal: true,
+                open: function (event, ui) {
+                    changeDialogPosition();
+                    $('#frmLoginPopup').validate({
+                        rules: {
+                            Email: {
+                                required: true
+                            },
+                            Password: {
+                                required: true
+                            }
+                        },
+                        messages: {
+                            Email: {
+                                required: "This field is required."
+                            },
+                            Password: {
+                                required: "This field is required."
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        function clearErrorMessages() {
+            $("#strStartDateTime").closest('.form-group').next().find('.text-danger').text('');
+            $("#RecurranceIntervalDays").closest('.form-group').find('.text-danger').text('');
+            $("#RecurranceIntervalWeeks").closest('.form-group').find('.text-danger').text('');
+            $("input[name^='RecurranceDaysInWeekSelectList'").closest('table').parent().find('.text-danger').text('');
+            $("#SelectedMonths").closest('.form-group').find('.text-danger').text('');
+            $("#SelectedDatesInMonth").closest('.form-group').find('.text-danger').text('');
+            $("#SelectedWeekNos").closest('.form-group').find('.text-danger').text('');
+            $("#SelectedDaysInWeekForMonth").closest('.form-group').find('.text-danger').text('');
+        }
+
+        function changeDialogPosition() {
+            $('.modal').dialog("option", "position", { my: "center top", at: "center top+50", of: window });
+        }        
+    </script>
+}

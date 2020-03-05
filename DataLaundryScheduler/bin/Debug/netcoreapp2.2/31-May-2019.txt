@@ -1,0 +1,240 @@
+Error Logged at 5/31/2019 6:47:54 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:47:54 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:47:54 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:47:54 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:48:35 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:48:35 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:48:35 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:48:35 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:49:21 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:49:21 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:49:21 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:49:21 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:52:56 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:52:56 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:52:56 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+
+Error Logged at 5/31/2019 6:52:56 AM
+
+
+The configuration file 'appsettings.json' was not found and is not optional. The physical path is 'D:\#NetCore\Final\DataLaundryScheduler\bin\Debug\netcoreapp2.2\win10-x64\appsettings.json'.
+
+
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at DataLaundryScheduler.Settings.Getbuilder() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 39
+   at DataLaundryScheduler.Settings.GetConnectionString() in D:\#NetCore\Final\DataLaundryScheduler\Settings.cs:line 51
+   at DataLaundryScheduler.Utilities.DBProvider.ExecuteNonQuery(String commandText, CommandType commandType, List`1& parameters) in D:\#NetCore\Final\DataLaundryScheduler\Utilities\DBProvider.cs:line 70
+   at DataLaundryScheduler.Helpers.LogHelper.InsertErrorLogs(String moduleName, String methodName, String exception, String innerException, String stackTrace, Nullable`1 feedProviderId) in D:\#NetCore\Final\DataLaundryScheduler\Helpers\LogHelper.cs:line 27
+
+

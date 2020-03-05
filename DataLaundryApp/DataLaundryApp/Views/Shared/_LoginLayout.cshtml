@@ -1,0 +1,69 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DataLaundry | @ViewBag.Title</title>
+
+    <link type="image/x-icon" rel="shortcut icon" href="~/img/data_laundry.png" />
+    <link type="image/x-icon" rel="icon" href="~/img/data_laundry.png" />
+    @*@Styles.Render("~/Content/css")*@
+
+    <link rel="stylesheet" href="~/font-awesome/css/font-awesome.css"> 
+    <link rel="stylesheet" href="~/Content/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css"> 
+    <link rel="stylesheet" href="~/Content/plugins/toastr/toastr.min.css"> 
+    <link rel="stylesheet" href="~/Content/plugins/sweetalert2/sweetalert2.css"> 
+    <link rel="stylesheet" href="~/Content/plugins/touchspin/jquery.bootstrap-touchspin.min.css"> 
+    <link rel="stylesheet" href="~/Content/plugins/jsTree/style.min.css"> 
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css"> 
+    <link rel="stylesheet" href="~/Content/plugins/iCheck/custom.css"> 
+    <link rel="stylesheet" href="~/Content/plugins/select2/select2.min.css"> 
+    <link rel="stylesheet" href="~/Content/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css"> 
+    <link rel="stylesheet" href="~/Content/plugins/bootstrap-multiselect/bootstrap-multiselect.css"> 
+    <link rel="stylesheet" href="~/Content/animate.css"> 
+    <link rel="stylesheet" href="~/Content/style.css"> 
+    <link rel="stylesheet" href="~/Content/Site.css"> 
+
+</head>
+<body class="white-bg">
+    <div class="middle-box text-center animated fadeInDown">
+        <div>
+            <div>
+                <h1 class="logo-name">
+                    <img src="~/img/data_laundry.png" width="175" />
+                </h1>
+            </div>
+
+            @RenderBody()
+        </div>
+        <p class="m-t">
+            <small><strong>&copy;</strong> @DateTime.Now.Year DataLaundry</small>
+        </p>
+    </div>
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/plugins/toastr/toastr.min.js"></script>
+    @RenderSection("scripts", false)
+    <script>
+        $(document).ready(function () {          
+            var tempMsg = '@TempData["ResponseMsg"]';
+            if (tempMsg != "") {
+                var resMsg = tempMsg.split("|")[0];
+
+                if (tempMsg.split("|")[1] == "success")
+                    toastr.success(resMsg);
+                else if (tempMsg.split("|")[1] == "warning")
+                    toastr.warning(resMsg);
+                else if (tempMsg.split("|")[1] == "info")
+                    toastr.info(resMsg);
+                else
+                    toastr.error(resMsg);
+            }
+        });
+    </script>
+</body>
+</html>
